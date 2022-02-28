@@ -1,6 +1,7 @@
 /*
 	Override management of player deaths
 */
+const SPAWN_MANAGER_RESOURCE = "spawnmanager";
 
 /**
  * Event listener called when a resource has been started
@@ -8,7 +9,10 @@
  */
 function resourceStarted(resource)
 {
-
+	if (resource != SPAWN_MANAGER_RESOURCE)
+	{
+		return;
+	}
 }
 
 /**
