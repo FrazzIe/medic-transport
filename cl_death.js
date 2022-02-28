@@ -3,6 +3,8 @@
 */
 const SPAWN_MANAGER_RESOURCE = "spawnmanager";
 
+let playerSpawned;
+
 /**
  * Handle player spawning
  */
@@ -22,8 +24,12 @@ function resourceStarted(resource)
 		return;
 	}
 
-	// Override default player spawning
-	exports[SPAWN_MANAGER_RESOURCE].setAutoSpawnCallback(spawnPlayer);
+	// ensure player has spawned at least once
+	if (playerSpawned)
+	{
+		// Override default player spawning
+		exports[SPAWN_MANAGER_RESOURCE].setAutoSpawnCallback(spawnPlayer);
+	}
 }
 
 /**
@@ -31,6 +37,8 @@ function resourceStarted(resource)
  */
 function init()
 {
+	playerSpawned = false;
+
 	on("onClientResourceStart", resourceStarted);
 }
 
