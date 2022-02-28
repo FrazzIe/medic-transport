@@ -1,7 +1,7 @@
 /// <reference path="./node_modules/@citizenfx/client"/>
 
 /*
-	Override management of player deaths
+	Override management of player respawns
 */
 
 const SPAWN_MANAGER_RESOURCE = "spawnmanager";
