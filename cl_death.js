@@ -4,6 +4,14 @@
 const SPAWN_MANAGER_RESOURCE = "spawnmanager";
 
 /**
+ * Override default player spawning
+ */
+function spawnPlayer()
+{
+
+}
+
+/**
  * Event listener called when a resource has been started
  * @param {string} resource name of resource
  */
