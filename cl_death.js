@@ -3,6 +3,7 @@
 /*
 	Override management of player deaths
 */
+
 const SPAWN_MANAGER_RESOURCE = "spawnmanager";
 
 let playerSpawned;
@@ -13,11 +14,12 @@ let playerSpawned;
 function spawnPlayer()
 {
 	const ped = PlayerPedId();
-	const pos = GetEntityCoords(ped);
+	const [x, y, z] = GetEntityCoords(ped);
 	const heading = GetEntityHeading(ped);
 
 	// revive player
-	NetworkResurrectLocalPlayer(pos.x, pos.y, pos.z, heading, true, true);
+	SetEntityCoordsNoOffset(ped, x, y, z, false, false, false, true);
+	NetworkResurrectLocalPlayer(x, y, z, heading, true, true, false);
 
 	ClearPedTasksImmediately(ped);
 
