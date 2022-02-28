@@ -29,7 +29,7 @@ async function spawnPlayer()
 
 	ClearPedTasksImmediately(ped);
 
-	emit("playerRevived");
+	emit("playerRespawned");
 }
 
 /**
