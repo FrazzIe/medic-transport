@@ -22,12 +22,23 @@ async function spawnPlayer()
 	const ped = PlayerPedId();
 	const [x, y, z] = GetEntityCoords(ped);
 	const heading = GetEntityHeading(ped);
+	const vehicle = GetVehiclePedIsIn(ped, false);
+
+	if (vehicle != 0)
+	{
+		// TODO: Get vehicle seat
+	}
 
 	// revive player
 	SetEntityCoordsNoOffset(ped, x, y, z, false, false, false, true);
 	NetworkResurrectLocalPlayer(x, y, z, heading, true, true, false);
 
 	ClearPedTasksImmediately(ped);
+
+	if (vehicle != 0)
+	{
+		// TODO: Set ped in vehicle
+	}
 
 	emit("playerRespawned");
 }
