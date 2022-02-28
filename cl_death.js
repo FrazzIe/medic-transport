@@ -4,7 +4,7 @@
 const SPAWN_MANAGER_RESOURCE = "spawnmanager";
 
 /**
- * Override default player spawning
+ * Handle player spawning
  */
 function spawnPlayer()
 {
@@ -21,6 +21,9 @@ function resourceStarted(resource)
 	{
 		return;
 	}
+
+	// Override default player spawning
+	exports[SPAWN_MANAGER_RESOURCE].setAutoSpawnCallback(spawnPlayer);
 }
 
 /**
