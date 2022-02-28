@@ -18,6 +18,10 @@ function spawnPlayer()
 
 	// revive player
 	NetworkResurrectLocalPlayer(pos.x, pos.y, pos.z, heading, true, true);
+
+	ClearPedTasksImmediately(ped);
+
+	emit("playerRevived");
 }
 
 /**
