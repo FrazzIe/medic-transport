@@ -12,7 +12,12 @@ let playerSpawned;
  */
 function spawnPlayer()
 {
+	const ped = PlayerPedId();
+	const pos = GetEntityCoords(ped);
+	const heading = GetEntityHeading(ped);
 
+	// revive player
+	NetworkResurrectLocalPlayer(pos.x, pos.y, pos.z, heading, true, true);
 }
 
 /**
