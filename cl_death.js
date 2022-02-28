@@ -11,8 +11,14 @@ let playerSpawned;
 /**
  * Handle player spawning
  */
-function spawnPlayer()
+async function spawnPlayer()
 {
+	// prevent reviving until the player is no longer moving
+	while(IsPedFalling(PlayerPedId()) || IsPedRagdoll(PlayerPedId()))
+	{
+		await delay(0);
+	}
+
 	const ped = PlayerPedId();
 	const [x, y, z] = GetEntityCoords(ped);
 	const heading = GetEntityHeading(ped);
