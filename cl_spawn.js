@@ -24,9 +24,11 @@ async function spawnPlayer()
 	const heading = GetEntityHeading(ped);
 	const vehicle = GetVehiclePedIsIn(ped, false);
 
+	let seat;
+
 	if (vehicle != 0)
 	{
-		// TODO: Get vehicle seat
+		seat = getPedVehicleSeat(ped, vehicle);
 	}
 
 	// revive player
@@ -35,9 +37,9 @@ async function spawnPlayer()
 
 	ClearPedTasksImmediately(ped);
 
-	if (vehicle != 0)
+	if (vehicle != 0 && seat > -2)
 	{
-		// TODO: Set ped in vehicle
+		SetPedIntoVehicle(ped, vehicle, seat);
 	}
 
 	emit("playerRespawned");
