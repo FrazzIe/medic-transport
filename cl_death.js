@@ -1,3 +1,5 @@
+/// <reference path="./node_modules/@citizenfx/client"/>
+
 /*
 	Override management of player deaths
 */

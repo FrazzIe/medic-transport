@@ -1,0 +1,12 @@
+{
+  "name": "medic-transport",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Fraser Watt <28698343+FrazzIe@users.noreply.github.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@citizenfx/client": "latest",
+    "@citizenfx/server": "latest"
+  }
+}
