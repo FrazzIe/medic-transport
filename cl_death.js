@@ -34,6 +34,7 @@ function onPlayerRespawned()
 
 	playerDeadTick = setTick(onPlayerDeadTick);
 
+	emit("playerDead");
 }
 
 /**
