@@ -25,7 +25,7 @@ const deathAnimations =
 	],
 	water:
 	[
-		{ dict: "dam_ko", anim: "drown", flag: 1 }
+		{ dict: "dam_ko", anim: "drown", flag: 2 }
 	]
 };
 const disabledControls =
