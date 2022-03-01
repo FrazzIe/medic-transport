@@ -6,8 +6,8 @@
 
 const deathAnimations =
 [
-	{ dict = "missarmenian2", anim = "drunk_loop", flag = 129 },
-	{ dict = "random@mugging4", anim = "flee_backward_loop_shopkeeper", flag = 129 },
+	{ dict: "missarmenian2", anim: "drunk_loop", flag: 129 },
+	{ dict: "random@mugging4", anim: "flee_backward_loop_shopkeeper", flag: 129 },
 ];
 let playerDead;
 let playerDeadTick;
