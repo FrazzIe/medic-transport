@@ -11,6 +11,7 @@ const deathAnimations =
 ];
 let playerDead;
 let playerDeadTick;
+let playerAnimation;
 
 /**
  * Ticker ran every frame when a player is dead
@@ -31,6 +32,9 @@ function onPlayerRespawned()
 
 	// set player invincible
 	SetPlayerInvincibleKeepRagdollEnabled(player, true);
+
+	// get basic random animation
+	playerAnimation = deathAnimations[Math.floor(Math.random() * deathAnimations.length)];
 
 	playerDeadTick = setTick(onPlayerDeadTick);
 
