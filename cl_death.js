@@ -77,18 +77,20 @@ async function onPlayerDeadTick()
 		DisableControlAction(2, disabledControls[name], true);
 	}
 
+	const animation = getDeathAnimation();
+
 	// prevent running if animation not available
-	if (playerAnimation == null)
+	if (animation == null)
 	{
 		return;
 	}
 
 	// load animation if not available
-	if (!HasAnimDictLoaded(playerAnimation.dict))
+	if (!HasAnimDictLoaded(animation.dict))
 	{
-		RequestAnimDict(playerAnimation.dict);
+		RequestAnimDict(animation.dict);
 
-		while (!HasAnimDictLoaded(playerAnimation.dict))
+		while (!HasAnimDictLoaded(animation.dict))
 		{
 			await delay(0);
 		}
@@ -97,12 +99,12 @@ async function onPlayerDeadTick()
 	const ped = PlayerPedId();
 
 	// don't play animation if already playing
-	if (IsEntityPlayingAnim(ped, playerAnimation.dict, playerAnimation.anim, 3))
+	if (IsEntityPlayingAnim(ped, animation.dict, animation.anim, 3))
 	{
 		return;
 	}
 
-	TaskPlayAnim(ped, playerAnimation.dict, playerAnimation.anim, 2.0, 1.0, -1, playerAnimation.flag, 0.0, false, false, false);
+	TaskPlayAnim(ped, animation.dict, animation.anim, 2.0, 1.0, -1, animation.flag, 0.0, false, false, false);
 }
 
 /**
