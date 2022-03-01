@@ -13,6 +13,10 @@ function onPlayerRespawned()
 {
 	playerDead = true;
 
+	const playerId = PlayerId();
+
+	// set player invincible
+	SetPlayerInvincibleKeepRagdollEnabled(playerId, true);
 }
 
 /**
