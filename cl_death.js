@@ -4,6 +4,8 @@
 	Manage player deaths
 */
 
+const WATER_BUOYANCY = 1.2;
+
 const deathAnimations =
 {
 	player:
