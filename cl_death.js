@@ -40,6 +40,33 @@ let playerDeadTick;
 let playerDeathAnimations;
 
 /**
+ * Get death animation for situation
+ * @returns {object | undefined} animation
+ */
+function getDeathAnimation()
+{
+	if (playerDeathAnimations == null)
+	{
+		return;
+	}
+
+	const ped = PlayerPedId();
+	const vehicle = GetVehiclePedIsIn(ped, false);
+
+	if (vehicle != 0)
+	{
+		return playerDeathAnimations.vehicle;
+	}
+
+	if (IsPedSwimming(ped))
+	{
+		return playerDeathAnimations.water;
+	}
+
+	return playerDeathAnimations.player;
+}
+
+/**
  * Ticker ran every frame when a player is dead
  */
 async function onPlayerDeadTick()
