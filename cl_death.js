@@ -9,6 +9,20 @@ const deathAnimations =
 	{ dict: "missarmenian2", anim: "drunk_loop", flag: 129 },
 	{ dict: "random@mugging4", anim: "flee_backward_loop_shopkeeper", flag: 129 },
 ];
+const disabledControls =
+{	
+	INPUT_SPRINT: 21,
+	INPUT_JUMP: 22,
+	INPUT_ENTER: 32,
+	INPUT_ATTACK: 24,
+	INPUT_MOVE_LR: 30,
+	INPUT_MOVE_UD: 31,
+	INPUT_DUCK: 36,
+	INPUT_VEH_MOVE_LR: 59,
+	INPUT_VEH_MOVE_UD: 60,
+	INPUT_VEH_DUCK: 73,
+	INPUT_VEH_EXIT: 75
+};
 
 let playerDead;
 let playerDeadTick;
@@ -19,6 +33,12 @@ let playerAnimation;
  */
 async function onPlayerDeadTick()
 {
+	// disable player controls
+	for (name in disabledControls)
+	{
+		DisableControlAction(2, disabledControls[name], true);
+	}
+
 	// prevent running if animation not available
 	if (playerAnimation == null)
 	{
