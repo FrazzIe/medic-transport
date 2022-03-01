@@ -17,7 +17,7 @@ const deathAnimations =
 		{ dict: "dead", anim: "dead_e", flag: 1 },
 		{ dict: "dead", anim: "dead_f", flag: 1 },
 		{ dict: "dead", anim: "dead_g", flag: 1 },
-		{ dict: "dead", anim: "dead_h", flag: 1 },
+		{ dict: "dead", anim: "dead_h", flag: 1 }
 	],
 	vehicle:
 	[
