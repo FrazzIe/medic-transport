@@ -37,7 +37,7 @@ const disabledControls =
 
 let playerDead;
 let playerDeadTick;
-let playerAnimation;
+let playerDeathAnimations;
 
 /**
  * Ticker ran every frame when a player is dead
@@ -90,8 +90,13 @@ function onPlayerRespawned()
 	// set player invincible
 	SetPlayerInvincibleKeepRagdollEnabled(player, true);
 
-	// get basic random animation
-	playerAnimation = deathAnimations[Math.floor(Math.random() * deathAnimations.length)];
+	// get random animations for death
+	playerAnimations =
+	{
+		player: deathAnimations.player[Math.floor(Math.random() * deathAnimations.player.length)],
+		vehicle: deathAnimations.vehicle[Math.floor(Math.random() * deathAnimations.vehicle.length)],
+		water: deathAnimations.water[Math.floor(Math.random() * deathAnimations.water.length)]
+	};
 
 	playerDeadTick = setTick(onPlayerDeadTick);
 
