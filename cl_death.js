@@ -10,6 +10,15 @@ const deathAnimations =
 	{ dict = "random@mugging4", anim = "flee_backward_loop_shopkeeper", flag = 129 },
 ];
 let playerDead;
+let playerDeadTick;
+
+/**
+ * Ticker ran every frame when a player is dead
+ */
+function onPlayerDeadTick()
+{
+	// TODO
+}
 
 /**
  * Handle player death after respawn
@@ -22,6 +31,9 @@ function onPlayerRespawned()
 
 	// set player invincible
 	SetPlayerInvincibleKeepRagdollEnabled(player, true);
+
+	playerDeadTick = setTick(onPlayerDeadTick);
+
 }
 
 /**
