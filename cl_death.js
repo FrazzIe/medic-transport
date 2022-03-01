@@ -4,11 +4,14 @@
 	Manage player deaths
 */
 
+let playerDead;
+
 /**
  * Handle player death after respawn
  */
 function onPlayerRespawned()
 {
+	playerDead = true;
 
 }
 
@@ -17,6 +20,8 @@ function onPlayerRespawned()
  */
 function init()
 {
+	playerDead = false;
+
 	on("playerRespawned", onPlayerRespawned);
 }
  
