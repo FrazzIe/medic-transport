@@ -10,6 +10,14 @@ const deathAnimations =
 	[
 		{ dict: "missarmenian2", anim: "drunk_loop", flag: 129 },
 		{ dict: "random@mugging4", anim: "flee_backward_loop_shopkeeper", flag: 129 },
+		{ dict: "dead", anim: "dead_a", flag: 1 },
+		{ dict: "dead", anim: "dead_b", flag: 1 },
+		{ dict: "dead", anim: "dead_c", flag: 1 },
+		{ dict: "dead", anim: "dead_d", flag: 1 },
+		{ dict: "dead", anim: "dead_e", flag: 1 },
+		{ dict: "dead", anim: "dead_f", flag: 1 },
+		{ dict: "dead", anim: "dead_g", flag: 1 },
+		{ dict: "dead", anim: "dead_h", flag: 1 },
 	],
 	vehicle:
 	[
