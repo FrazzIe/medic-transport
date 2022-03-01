@@ -120,7 +120,7 @@ function onPlayerRespawned()
 	SetPlayerInvincibleKeepRagdollEnabled(player, true);
 
 	// get random animations for death
-	playerAnimations =
+	playerDeathAnimations =
 	{
 		player: deathAnimations.player[Math.floor(Math.random() * deathAnimations.player.length)],
 		vehicle: deathAnimations.vehicle[Math.floor(Math.random() * deathAnimations.vehicle.length)],
