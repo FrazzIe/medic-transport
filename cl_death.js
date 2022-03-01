@@ -16,9 +16,34 @@ let playerAnimation;
 /**
  * Ticker ran every frame when a player is dead
  */
-function onPlayerDeadTick()
+async function onPlayerDeadTick()
 {
-	// TODO
+	// prevent running if animation not available
+	if (playerAnimation == null)
+	{
+		return;
+	}
+
+	// load animation if not available
+	if (!HasAnimDictLoaded(playerAnimation.dict))
+	{
+		RequestAnimDict(playerAnimation.dict);
+
+		while (!HasAnimDictLoaded(playerAnimation.dict))
+		{
+			await delay(0);
+		}
+	}
+
+	const ped = PlayerPedId();
+
+	// don't play animation if already playing
+	if (IsEntityPlayingAnim(ped, playerAnimation.dict, playerAnimation.anim, 3))
+	{
+		return;
+	}
+
+	TaskPlayAnim(ped, playerAnimation.dict, playerAnimation.anim, 2.0, 1.0, -1, playerAnimation.flag, 0.0, false, false, false);
 }
 
 /**
