@@ -1,4 +1,4 @@
-/// <reference path="./node_modules/@citizenfx/client"/>
+/// <reference path="node_modules/@citizenfx/client/index.d.ts"/>
 
 /*
 	Manage player deaths

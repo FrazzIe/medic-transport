@@ -1,4 +1,4 @@
-/// <reference path="./node_modules/@citizenfx/client"/>
+/// <reference path="node_modules/@citizenfx/client/index.d.ts"/>
 
 /*
 	Override management of player respawns
