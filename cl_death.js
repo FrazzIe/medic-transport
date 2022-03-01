@@ -106,6 +106,15 @@ async function onPlayerDeadTick()
 
 	const ped = PlayerPedId();
 
+	// floating to surface
+	// credit: https://github.com/jameslroll
+	if (IsPedSwimmingUnderWater(ped))
+	{
+		const [x, y] = GetEntityVelocity(ped);
+
+		SetEntityVelocity(ped, x, y, WATER_BUOYANCY);
+	}
+
 	// don't play animation if already playing
 	if (IsEntityPlayingAnim(ped, animation.dict, animation.anim, 3))
 	{
