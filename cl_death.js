@@ -5,10 +5,21 @@
 */
 
 const deathAnimations =
-[
-	{ dict: "missarmenian2", anim: "drunk_loop", flag: 129 },
-	{ dict: "random@mugging4", anim: "flee_backward_loop_shopkeeper", flag: 129 },
-];
+{
+	player:
+	[
+		{ dict: "missarmenian2", anim: "drunk_loop", flag: 129 },
+		{ dict: "random@mugging4", anim: "flee_backward_loop_shopkeeper", flag: 129 },
+	],
+	vehicle:
+	[
+		{ dict: "veh@std@rps@idle_duck", anim: "sit", flag: 16 }
+	],
+	water:
+	[
+		{ dict: "dam_ko", anim: "drown", flag: 1 }
+	]
+};
 const disabledControls =
 {	
 	INPUT_SPRINT: 21,
