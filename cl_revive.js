@@ -1,0 +1,1 @@
+/// <reference path="node_modules/@citizenfx/client/index.d.ts"/>
