@@ -31,7 +31,7 @@ const deathAnimations =
 	]
 };
 const disabledControls =
-{	
+{
 	INPUT_SPRINT: 21,
 	INPUT_JUMP: 22,
 	INPUT_ENTER: 32,
