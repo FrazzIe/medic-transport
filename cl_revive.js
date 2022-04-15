@@ -17,5 +17,5 @@ function onRevivePlayer()
  */
 function init()
 {
-	onNet("revivePlayer", onResourceStarted);
+	onNet("revivePlayer", onRevivePlayer);
 }
