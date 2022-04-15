@@ -9,7 +9,11 @@
  */
 function onRevivePlayer()
 {
+	const ped = PlayerPedId();
 
+	ClearPedBloodDamage(ped);
+
+	emit("playerRevived");
 }
 
 /**
