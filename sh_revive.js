@@ -14,10 +14,23 @@ function onRevivePlayer()
 
 /**
  * Server-side event listener called when a player is to be revived 
+ * @param {string | number | null} target 
  */
-function onNetRevivePlayer()
+function onNetRevivePlayer(target)
 {
+	const src = global.source;
 
+	// external permission check
+	emit("canPlayerRevive", src, target ?? src);
+
+	// prevent revive
+	if (WasEventCanceled())
+	{
+		return;
+	}
+
+	// revive player
+	emitNet("revivePlayer", target ?? src);
 }
 
 /**
