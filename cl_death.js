@@ -196,7 +196,7 @@ function init()
 	playerDead = false;
 
 	on("playerRespawned", onPlayerRespawned);
-	on("playerRevived", onPlayerRevived);
+	onNet("playerRevived", onPlayerRevived);
 }
  
 init();
