@@ -44,3 +44,5 @@ function init()
 {
 	onNet("revivePlayer", IsDuplicityVersion() ? onNetRevivePlayer : onRevivePlayer);
 }
+
+init();
