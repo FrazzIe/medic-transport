@@ -5,9 +5,17 @@
 */
 
 /**
- * Event listener called when a player is to be revived
+ * Client-side event listener called when a player is to be revived
  */
 function onRevivePlayer()
+{
+
+}
+
+/**
+ * Server-side event listener called when a player is to be revived 
+ */
+function onNetRevivePlayer()
 {
 
 }
@@ -17,5 +25,5 @@ function onRevivePlayer()
  */
 function init()
 {
-	onNet("revivePlayer", onRevivePlayer);
+	onNet("revivePlayer", IsDuplicityVersion() ? onNetRevivePlayer : onRevivePlayer);
 }
