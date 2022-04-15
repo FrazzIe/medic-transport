@@ -152,6 +152,30 @@ function onPlayerRespawned()
 }
 
 /**
+ * Handle player revival after death
+ */
+function onPlayerRevived()
+{
+	if (!playerDead)
+	{
+		return;
+	}
+
+	// clear death ticker
+	if (playerDeadTick != null)
+	{
+		clearTick(playerDeadTick);
+
+		playerDeadTick = null;
+	}
+
+	const player = PlayerId();
+
+	// set player vincible
+	SetPlayerInvincibleKeepRagdollEnabled(player, false);
+}
+
+/**
  * Init event listeners & vars
  */
 function init()
@@ -159,6 +183,7 @@ function init()
 	playerDead = false;
 
 	on("playerRespawned", onPlayerRespawned);
+	on("playerRevived", onPlayerRevived);
 }
  
 init();
