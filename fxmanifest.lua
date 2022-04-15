@@ -12,3 +12,7 @@ client_scripts {
 server_scripts {
 	"sv_*.*"
 }
+
+shared_scripts {
+	"sh_*.*"
+}
