@@ -169,6 +169,19 @@ function onPlayerRevived()
 		playerDeadTick = null;
 	}
 
+	const animation = getDeathAnimation();
+
+	if (animation != null)
+	{
+		const ped = PlayerPedId();
+
+		// clear current animations
+		playerDeathAnimations = null;
+
+		// stop playing death animation
+		StopAnimTask(ped, animation.dict, animation.anim, 1.0);
+	}
+
 	const player = PlayerId();
 
 	// set player vincible

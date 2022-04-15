@@ -46,3 +46,11 @@ function init()
 }
 
 init();
+
+if (!IsDuplicityVersion())
+{
+	RegisterCommand("revive", (src, args, raw) =>
+	{
+		emitNet("revivePlayer", GetPlayerServerId(PlayerId()));
+	});
+}
