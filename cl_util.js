@@ -44,3 +44,17 @@ function getPedVehicleSeat(ped, vehicle)
 	
 	return -2;
 }
+
+/**
+ * Get random number between min (inclusive) and max (exclusive)
+ * 
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+ * 
+ * @param {number} min 
+ * @param {number} max 
+ * @returns {number}
+ */
+function getRandom(min, max)
+{
+	return Math.random() * (max - min) + min;
+}
