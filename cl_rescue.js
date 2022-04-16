@@ -3,7 +3,7 @@
  */
 function onPlayerDeath()
 {
-	
+
 }
 
 /**
@@ -11,7 +11,7 @@ function onPlayerDeath()
  */
 function init()
 {
-	on("playerDead", onPlayerDead);
+	on("playerDead", onPlayerDeath);
 }
 
 init();
