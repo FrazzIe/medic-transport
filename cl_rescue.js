@@ -107,7 +107,21 @@ function getRandomRescuePoint(pos)
  */
 function getRescueType(ped, pos)
 {
-	
+	// get player interior
+	const interiorId = GetInteriorFromEntity(ped);
+
+	// check if player in interior
+	if (interiorId != null && interiorId != 0)
+	{
+		// get interior hash
+		const interiorCoords, interiorHash = GetInteriorInfo(interiorId);
+		
+		// is player in accessable interior (must have navmeshs)
+		if (RESCUE_INTERIOR_WHITELIST.includes(interiorHash))
+		{
+			return RESCUE_TYPES.GROUND;
+		}
+	}
 }
 
 /**
