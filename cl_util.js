@@ -14,6 +14,28 @@ function delay(ms)
 }
 
 /**
+ * Clamp number between two values
+ * @param {number} value 
+ * @param {number} min 
+ * @param {number} max 
+ * @returns 
+ */
+function clamp(value, min, max)
+{
+	if (value > min)
+	{
+		if (value < max) 
+		{
+			return value;
+		}
+
+		return max;
+	}
+
+	return min;
+}
+
+/**
  * Get current seat index of ped in vehicle
  * 
  * Returns -2 on failure
