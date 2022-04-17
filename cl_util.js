@@ -58,3 +58,26 @@ function getRandom(min, max)
 {
 	return Math.random() * (max - min) + min;
 }
+
+/**
+ * Get random vector2 between two points
+ * 
+ * @param {Array<number>} x vector2 array
+ * @param {Array<number>} y vector2 array
+ * @param {number} min between 0.0 and 0.99
+ */
+function getVector2Random(x, y, min = 0.0)
+{
+	// get random
+	const random = getRandom(min, 1.0);
+	// y - x
+	const yx = [ y[0] - x[0], y[1] - x[1] ];
+	// get length of yx
+	const yxLength = ( yx[0] * yx[0] + yx[1] * yx[1] ) ** 0.5;
+	// get normal of yx
+	const yxNormal = [ yx[0] / yxLength, yx[1] / yxLength ];
+	// calc random offset
+	const yxRandom = [ random * yx[0], random * yx[1] ];
+
+	return [ x[0] + yxRandom[0], x[1] + yxRandom[1] ];
+}
