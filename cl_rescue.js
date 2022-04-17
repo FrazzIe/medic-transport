@@ -120,7 +120,7 @@ function getRescueType(ped, pos)
 	if (interiorId != null && interiorId != 0)
 	{
 		// get interior hash
-		const interiorCoords, interiorHash = GetInteriorInfo(interiorId);
+		const [interiorCoords, interiorHash] = GetInteriorInfo(interiorId);
 		
 		// is player in accessable interior (must have navmeshs)
 		if (RESCUE_INTERIOR_WHITELIST.includes(interiorHash))
