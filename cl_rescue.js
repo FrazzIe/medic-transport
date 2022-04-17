@@ -37,6 +37,11 @@ const RESCUE_ZONE_BLACKLIST = [ "ARMYB", "JAIL" ];
 const RESCUE_ZONE_AIR = [ "PALCOV", "OCEANA" ];
 
 /**
+ * List of interior hashes that are unreachable
+ */
+const RESCUE_INTERIOR_BLACKLIST = [];
+
+/**
  * Get closest hospital to position
  * @param {number[]} pos 
  */
