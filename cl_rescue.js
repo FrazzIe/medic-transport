@@ -36,6 +36,14 @@ function getClosestHospital(pos)
  */
 function onPlayerDeath()
 {
+	const ped = PlayerPedId();
+	const pos = GetEntityCoords(ped);
+
+	// get closest hospital
+	const closestHospital = getClosestHospital(pos);
+	// calc delivery point
+	const deliveryPoint = getVector2Random(pos, closestHospital, 0.5);
+
 
 }
 
