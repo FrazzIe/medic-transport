@@ -1,3 +1,6 @@
+/**
+ * Improvised Enum of available types of rescues
+ */
 const RESCUE_TYPES =
 {
 	NONE: 0,
@@ -5,6 +8,9 @@ const RESCUE_TYPES =
 	AIR: 2
 };
 
+/**
+ * List of hospital delivery locations
+ */
 const RESCUE_HOSPITALS =
 [
 	[ 340.73, -560.04, 28.74 ],   // DOWNT
@@ -15,9 +21,19 @@ const RESCUE_HOSPITALS =
 	[ -237.30, 6332.01, 32.40 ]   // PALETO
 ]
 
+/**
+ * How far away a rescue should be spawned from death location
+ */
 const RESCUE_SPAWN_DIST = 300.0;
 
+/**
+ * List of zones that are unreachable
+ */
 const RESCUE_ZONE_BLACKLIST = [ "ARMYB", "JAIL" ];
+
+/**
+ * List of zones that can only be reached by air
+ */
 const RESCUE_ZONE_AIR = [ "PALCOV", "OCEANA" ];
 
 /**
