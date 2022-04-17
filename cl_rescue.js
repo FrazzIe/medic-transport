@@ -8,7 +8,7 @@ const RESCUE_HOSPITALS =
 	[ -237.30, 6332.01, 32.40 ]   // PALETO
 ]
 
-const RESCUE_SPAWN_DIST = 50.0;
+const RESCUE_SPAWN_DIST = 300.0;
 
 /**
  * Get closest hospital to position
