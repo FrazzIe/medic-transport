@@ -145,6 +145,15 @@ function getRescueType(ped, pos)
 	{
 		return RESCUE_TYPES.AIR;
 	}
+
+	// get safe position for ped
+	const [safe, coord] = GetSafeCoordForPed(pos[0], pos[1], pos[2], false, 1 | 4 | 8);
+
+	// ground rescue if safe
+	if (safe)
+	{
+		return RESCUE_TYPES.GROUND;
+	}
 }
 
 /**
