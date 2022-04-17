@@ -8,6 +8,8 @@ const RESCUE_HOSPITALS =
 	[ -237.30, 6332.01, 32.40 ]   // PALETO
 ]
 
+const RESCUE_SPAWN_DIST = 50.0;
+
 /**
  * Get closest hospital to position
  */
@@ -29,6 +31,40 @@ function getClosestHospital(pos)
 	}
 
 	return closest;
+}
+
+/**
+ * Get random point offset from player
+ */
+function getRandomRescuePoint(pos)
+{
+	/*
+		E          A          F
+		           |
+		           |
+		           |
+		D ---------+--------- B
+		           |
+		           |
+		           |
+		H          C          G
+	*/
+	const points = 
+	[
+		[ pos[0], pos[1] + RESCUE_SPAWN_DIST ], // A
+		[ pos[0] + RESCUE_SPAWN_DIST, pos[1] ], // B
+		[ pos[0], pos[1] - RESCUE_SPAWN_DIST ], // C
+		[ pos[0] - RESCUE_SPAWN_DIST, pos[1] ], // D
+		
+		[ pos[0] - RESCUE_SPAWN_DIST, pos[1] + RESCUE_SPAWN_DIST ], // E
+		[ pos[0] + RESCUE_SPAWN_DIST, pos[1] + RESCUE_SPAWN_DIST ], // F
+		[ pos[0] + RESCUE_SPAWN_DIST, pos[1] - RESCUE_SPAWN_DIST ], // G
+		[ pos[0] - RESCUE_SPAWN_DIST, pos[1] - RESCUE_SPAWN_DIST ], // H		
+	];
+
+	const random = Math.floor(Math.random() * points.length);
+
+	return points[random];
 }
 
 /**
