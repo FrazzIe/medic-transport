@@ -79,6 +79,8 @@ function onPlayerDeath()
 	const closestHospital = getClosestHospital(pos);
 	// calc delivery point
 	const deliveryPoint = getVector2Random(pos, closestHospital, 0.2, 0.5);
+	// calc start point
+	const startPoint = getRandomRescuePoint(pos);
 }
 
 /**
