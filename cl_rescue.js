@@ -13,7 +13,22 @@ const RESCUE_HOSPITALS =
  */
 function getClosestHospital(pos)
 {
-	
+	let closest = RESCUE_HOSPITALS[0];
+	let closestDist = getVector2Distance(pos, closest);
+
+	for (let i = 1; i < RESCUE_HOSPITALS.length; i++)
+	{
+		const hospital = RESCUE_HOSPITALS[i];
+		const dist = getVector2Distance(pos, hospital);
+
+		if (dist < closestDist)
+		{
+			closest = hospital;
+			closestDist = dist;
+		}
+	}
+
+	return closest;
 }
 
 /**
