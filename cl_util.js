@@ -86,12 +86,18 @@ function getRandom(min, max)
  * 
  * @param {Array<number>} x vector2 array
  * @param {Array<number>} y vector2 array
- * @param {number} min between 0.0 and 0.99
+ * @param {number} [min] between 0.0 and 0.99
+ * @param {number} [max] between 0.01 and 1.0
  */
-function getVector2Random(x, y, min = 0.0)
+function getVector2Random(x, y, min = 0.0, max = 1.0)
 {
+	// clamp mix / max
+	min = clamp(min, 0.0, 0.99);
+	max = clamp(max, min, 1.0);
+
 	// get random
-	const random = getRandom(min, 1.0);
+	const random = getRandom(min, max);
+
 	// y - x
 	const yx = [ y[0] - x[0], y[1] - x[1] ];
 	// get length of yx
