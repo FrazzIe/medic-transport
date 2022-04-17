@@ -70,6 +70,16 @@ function getRandomRescuePoint(pos)
 }
 
 /**
+ * Determine the best method to use in rescue attempt
+ * @param {number} ped 
+ * @param {number[]} pos 
+ */
+function getRescueType(ped, pos)
+{
+	
+}
+
+/**
  * Listen for a players death
  */
 function onPlayerDeath()
