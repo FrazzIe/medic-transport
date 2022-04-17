@@ -10,6 +10,9 @@ const RESCUE_HOSPITALS =
 
 const RESCUE_SPAWN_DIST = 300.0;
 
+const RESCUE_ZONE_BLACKLIST = [ "ARMYB", "JAIL" ];
+const RESCUE_ZONE_AIR = [ "PALCOV", "OCEANA" ];
+
 /**
  * Get closest hospital to position
  * @param {number[]} pos 
