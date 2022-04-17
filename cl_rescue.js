@@ -9,6 +9,14 @@ const HOSPITAL =
 }
 
 /**
+ * Get closest hospital to position
+ */
+function getClosestHospital(pos)
+{
+	
+}
+
+/**
  * Listen for a players death
  */
 function onPlayerDeath()
