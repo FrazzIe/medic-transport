@@ -81,3 +81,16 @@ function getVector2Random(x, y, min = 0.0)
 
 	return [ x[0] + yxRandom[0], x[1] + yxRandom[1] ];
 }
+
+/**
+ * Calculate the distance between two vector2's
+ */
+function getVector2Distance(x, y)
+{
+	// y - x
+	const yx = [ y[0] - x[0], y[1] - x[1] ];
+	// dot product of yx
+	const yxDot = yx[0] * yx[0] + yx[1] * yx[1];
+	
+	return yxDot ** 0.5;
+}
