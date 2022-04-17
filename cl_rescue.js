@@ -1,3 +1,10 @@
+const RESCUE_TYPES =
+{
+	NONE: 0,
+	GROUND: 1,
+	AIR: 2
+};
+
 const RESCUE_HOSPITALS =
 [
 	[ 340.73, -560.04, 28.74 ],   // DOWNT
