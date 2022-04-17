@@ -130,7 +130,7 @@ function getRescueType(ped, pos)
 	}
 
 	// get player zone
-	const zone = GetNameOfZone(pos);
+	const zone = GetNameOfZone(pos[0], pos[1], pos[2]);
 
 	// cancel rescue if blacklisted zone
 	if (RESCUE_ZONE_BLACKLIST.includes(zone))
