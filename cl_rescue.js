@@ -107,6 +107,12 @@ function getRandomRescuePoint(pos)
  */
 function getRescueType(ped, pos)
 {
+	// force air rescue if water is involved
+	if (IsPedSwimming(ped))
+	{
+		return RESCUE_TYPES.AIR;
+	}
+
 	// get player interior
 	const interiorId = GetInteriorFromEntity(ped);
 
