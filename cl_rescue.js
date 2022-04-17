@@ -127,6 +127,8 @@ function getRescueType(ped, pos)
 		{
 			return RESCUE_TYPES.GROUND;
 		}
+
+		return RESCUE_TYPES.NONE;
 	}
 
 	// get player zone
