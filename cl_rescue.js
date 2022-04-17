@@ -122,6 +122,21 @@ function getRescueType(ped, pos)
 			return RESCUE_TYPES.GROUND;
 		}
 	}
+
+	// get player zone
+	const zone = GetNameOfZone(pos);
+
+	// cancel rescue if blacklisted zone
+	if (RESCUE_ZONE_BLACKLIST.includes(zone))
+	{
+		return RESCUE_TYPES.NONE;
+	}
+
+	// force air rescue if zone can only be reached by air
+	if (RESCUE_ZONE_AIR.includes(zone))
+	{
+		return RESCUE_TYPES.AIR;
+	}
 }
 
 /**
