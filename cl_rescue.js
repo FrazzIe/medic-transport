@@ -53,7 +53,21 @@ const RESCUE_HEIGHT_THRESHOLD = 30.0;
  * 
  * Percentage 0.0 - 1.0
  */
- const RESCUE_ELEVATED_THRESHOLD = 0.45;
+const RESCUE_ELEVATED_THRESHOLD = 0.45;
+
+/**
+ * Maximum distance between a players position and a vehicle node
+ * 
+ * GTA Metres
+ */
+const RESCUE_NODE_DIST = 30.0;
+
+/**
+ * Maximum height offset between a players position and a vehicle node
+ * 
+ * GTA Metres
+ */
+const RESCUE_NODE_HEIGHT = 10.0;
 
 /**
  * Get closest hospital to position
@@ -177,6 +191,28 @@ function getRescueType(ped, pos)
 	if (safe)
 	{
 		return RESCUE_TYPES.GROUND;
+	}
+
+	// get closest vehicle node
+	const [found, node] = GetClosestVehicleNode(pos[0], pos[1], pos[2], 1, 3.0, 0);
+
+	// was node found?
+	if (found)
+	{
+		const dist = getVector2Distance(pos, node);
+		
+		// ensure vehicle node is close enough to player
+		if (dist < RESCUE_NODE_DIST)
+		{
+			// calc length between player and node
+			const length = pos[2] - node[2];
+
+			// check if length is in range of -RESCUE_NODE_HEIGHT and +RESCUE_NODE_HEIGHT
+			if (length < RESCUE_NODE_HEIGHT && length > -RESCUE_NODE_HEIGHT)
+			{
+				return RESCUE_TYPES.GROUND;
+			}
+		}
 	}
 
 	// get heightmap length
