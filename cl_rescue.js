@@ -42,6 +42,20 @@ const RESCUE_ZONE_AIR = [ "PALCOV", "OCEANA" ];
 const RESCUE_INTERIOR_WHITELIST = [];
 
 /**
+ * Minimum length between bottom and top height map needed to perform an elevated position check
+ * 
+ * GTA Metres 0 - ...
+ */
+const RESCUE_HEIGHT_THRESHOLD = 30.0;
+
+/**
+ * Elevated threshold used to determine an elevated position
+ * 
+ * Percentage 0.0 - 1.0
+ */
+ const RESCUE_ELEVATED_THRESHOLD = 0.45;
+
+/**
  * Get closest hospital to position
  * @param {number[]} pos 
  */
@@ -163,6 +177,21 @@ function getRescueType(ped, pos)
 	if (safe)
 	{
 		return RESCUE_TYPES.GROUND;
+	}
+
+	// get heightmap length
+	const length = top - bottom;
+
+	// is heightmap length long enough
+	if (length >= RESCUE_HEIGHT_THRESHOLD)
+	{
+		// get percentage based on players height in relation to heightmap
+		const percentage = ((pos[2] - bottom) / length).toFixed(2);
+
+		if (percentage >= RESCUE_ELEVATED_THRESHOLD)
+		{
+			return RESCUE_TYPES.AIR;
+		}
 	}
 }
 
