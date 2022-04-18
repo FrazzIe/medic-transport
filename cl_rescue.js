@@ -140,6 +140,16 @@ function getRescueType(ped, pos)
 		return RESCUE_TYPES.NONE;
 	}
 
+	// get heightmap bounds
+	const top = GetHeightmapTopZForPosition(pos[0], pos[1]);
+	const bottom = GetHeightmapBottomZForPosition(pos[0], pos[1]);
+	
+	// prevent rescue if not within heightmap bounds
+	if (pos[2] < bottom || pos[2] > top)
+	{
+		return RESCUE_TYPES.NONE;
+	}
+
 	// force air rescue if zone can only be reached by air
 	if (RESCUE_ZONE_AIR.includes(zone))
 	{
