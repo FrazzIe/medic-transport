@@ -70,6 +70,20 @@ const RESCUE_NODE_DIST = 30.0;
 const RESCUE_NODE_HEIGHT = 10.0;
 
 /**
+ * Maximum distance between a players position and a path node
+ * 
+ * GTA Metres
+ */
+const RESCUE_PATH_DIST = 15.0;
+
+/**
+ * Maximum height offset between a players position and a path node
+ * 
+ * GTA Metres
+ */
+const RESCUE_PATH_HEIGHT = 5.0;
+
+/**
  * Get closest hospital to position
  * @param {number[]} pos 
  */
@@ -185,19 +199,32 @@ function getRescueType(ped, pos)
 	}
 
 	// get safe position for ped
-	const [safe, coord] = GetSafeCoordForPed(pos[0], pos[1], pos[2], false, 1 | 4 | 8);
+	const [pathFound, path] = GetSafeCoordForPed(pos[0], pos[1], pos[2], false, 1 | 4 | 8);
 
 	// ground rescue if safe
-	if (safe)
+	if (pathFound)
 	{
-		return RESCUE_TYPES.GROUND;
+		const dist = getVector2Distance(pos, path);
+
+		// ensure vehicle node is close enough to player
+		if (dist < RESCUE_PATH_DIST)
+		{
+			// calc length between player and path
+			const length = pos[2] - path[2];
+
+			// check if length is in range of -RESCUE_PATH_HEIGHT and +RESCUE_PATH_HEIGHT
+			if (length < RESCUE_PATH_HEIGHT && length > -RESCUE_PATH_HEIGHT)
+			{
+				return RESCUE_TYPES.GROUND;
+			}
+		}
 	}
 
 	// get closest vehicle node
-	const [found, node] = GetClosestVehicleNode(pos[0], pos[1], pos[2], 1, 3.0, 0);
+	const [nodeFound, node] = GetClosestVehicleNode(pos[0], pos[1], pos[2], 1, 3.0, 0);
 
 	// was node found?
-	if (found)
+	if (nodeFound)
 	{
 		const dist = getVector2Distance(pos, node);
 		
