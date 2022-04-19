@@ -122,3 +122,26 @@ function getVector2Distance(x, y)
 	
 	return yxDot ** 0.5;
 }
+
+/**
+ * Cast a ray to a point to get intersect
+ * @param {[number, number, number]} from start vector
+ * @param {[number, number, number]} to end vector
+ * @param {number} [ignore] entity to ignore
+ * @param {number} [flags] intersection bit flags
+ * @returns {[number, boolean, [ number, number, number ], [ number, number, number ], number]} result
+ */
+async function raycast(from, to, ignore = null, flags = -1) {
+	const handle = StartShapeTestLosProbe(from[0], from[1], from[2], to[0], to[1], to[2], flags, ignore, 0);
+	let result = GetShapeTestResultIncludingMaterial(handle);
+
+	do
+	{
+		result = GetShapeTestResultIncludingMaterial(handle);
+
+		await delay(0);
+	}
+	while (result[0] == 1);
+
+	return result;
+}
