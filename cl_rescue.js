@@ -289,6 +289,8 @@ function getRescueType(ped, pos)
 			return RESCUE_TYPES.AIR;
 		}
 	}
+
+	return RESCUE_TYPES.GROUND;
 }
 
 /**
