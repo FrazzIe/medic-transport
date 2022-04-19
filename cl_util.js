@@ -129,7 +129,7 @@ function getVector2Distance(x, y)
  * @param {[number, number, number]} to end vector
  * @param {number} [ignore] entity to ignore
  * @param {number} [flags] intersection bit flags
- * @returns {[number, boolean, [ number, number, number ], [ number, number, number ], number]} result
+ * @returns {[number, boolean, [ number, number, number ], [ number, number, number ], number, number]} result
  */
 async function raycast(from, to, ignore = null, flags = -1) {
 	const handle = StartShapeTestLosProbe(from[0], from[1], from[2], to[0], to[1], to[2], flags, ignore, 0);
