@@ -23,6 +23,8 @@ const RESCUE_HOSPITALS =
 
 /**
  * How far away a rescue should be spawned from death location
+ * 
+ * GTA Metres
  */
 const RESCUE_SPAWN_DIST = 300.0;
 
