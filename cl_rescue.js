@@ -301,6 +301,18 @@ function onPlayerDeath()
 	const ped = PlayerPedId();
 	const pos = GetEntityCoords(ped);
 
+	// determine type of rescue
+	const rescueType = getRescueType(ped, pos);
+
+	// stop rescue
+	if (rescueType == RESCUE_TYPES.NONE)
+	{
+		return;
+	}
+
+	// -----------------------------------------------------
+	// prepare key positions needed for rescue
+
 	// get closest hospital
 	const closestHospital = getClosestHospital(pos);
 	// calc delivery point
