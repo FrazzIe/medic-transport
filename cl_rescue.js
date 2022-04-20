@@ -88,7 +88,14 @@ const RESCUE_INTERIOR_WHITELIST =
  * 
  * GTA Metres 0 - ...
  */
-const RESCUE_HEIGHT_THRESHOLD = 30.0;
+const RESCUE_HEIGHT_MIN = 30.0;
+
+/**
+ * Maximum length between bottom and top height map needed to skip an elevated position check
+ * 
+ * GTA Metres 0 - ...
+ */
+const RESCUE_HEIGHT_MAX = 125.0;
 
 /**
  * Elevated threshold used to determine an elevated position
@@ -331,8 +338,13 @@ function getRescueType(ped, pos)
 	// get heightmap length
 	const length = top - bottom;
 
+	if (length >= RESCUE_HEIGHT_MAX)
+	{
+		return RESCUE_TYPES.AIR;
+	}
+
 	// is heightmap length long enough
-	if (length >= RESCUE_HEIGHT_THRESHOLD)
+	if (length >= RESCUE_HEIGHT_MIN)
 	{
 		// get percentage based on players height in relation to heightmap
 		const percentage = ((pos[2] - bottom) / length).toFixed(2);
