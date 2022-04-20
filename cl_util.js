@@ -124,6 +124,41 @@ function getVector2Distance(x, y)
 }
 
 /**
+ * Get random point offset from point
+ * @param {[number, number]} point
+ */
+function getVector2RandomOffset(point, offset = 1.0)
+{
+	/*
+		E          A          F
+		           |
+		           |
+		           |
+		D ---------+--------- B
+		           |
+		           |
+		           |
+		H          C          G
+	*/
+	const points = 
+	[
+		[ point[0], point[1] + offset ], // A
+		[ point[0] + offset, point[1] ], // B
+		[ point[0], point[1] - offset ], // C
+		[ point[0] - offset, point[1] ], // D
+		
+		[ point[0] - offset, point[1] + offset ], // E
+		[ point[0] + offset, point[1] + offset ], // F
+		[ point[0] + offset, point[1] - offset ], // G
+		[ point[0] - offset, point[1] - offset ], // H
+	];
+
+	const random = Math.floor(Math.random() * points.length);
+
+	return points[random];
+}
+
+/**
  * Calculate the closest vehicle node for vector2
  * @param {[number, number]} point vector2
  * @param {boolean} [getHeading] get node with heading

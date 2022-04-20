@@ -148,41 +148,6 @@ function getClosestHospital(pos)
 }
 
 /**
- * Get random point offset from player
- * @param {number[]} pos 
- */
-function getRandomRescuePoint(pos)
-{
-	/*
-		E          A          F
-		           |
-		           |
-		           |
-		D ---------+--------- B
-		           |
-		           |
-		           |
-		H          C          G
-	*/
-	const points = 
-	[
-		[ pos[0], pos[1] + RESCUE_SPAWN_DIST ], // A
-		[ pos[0] + RESCUE_SPAWN_DIST, pos[1] ], // B
-		[ pos[0], pos[1] - RESCUE_SPAWN_DIST ], // C
-		[ pos[0] - RESCUE_SPAWN_DIST, pos[1] ], // D
-		
-		[ pos[0] - RESCUE_SPAWN_DIST, pos[1] + RESCUE_SPAWN_DIST ], // E
-		[ pos[0] + RESCUE_SPAWN_DIST, pos[1] + RESCUE_SPAWN_DIST ], // F
-		[ pos[0] + RESCUE_SPAWN_DIST, pos[1] - RESCUE_SPAWN_DIST ], // G
-		[ pos[0] - RESCUE_SPAWN_DIST, pos[1] - RESCUE_SPAWN_DIST ], // H
-	];
-
-	const random = Math.floor(Math.random() * points.length);
-
-	return points[random];
-}
-
-/**
  * Get delivery point for rescue
  * @param {[number, number, number]} pos
  * @returns {[number, number, number]} delivery point
@@ -361,7 +326,7 @@ function startRescue()
 	// calc delivery point
 	const deliveryPoint = getDeliveryPoint(pos);
 	// calc start point
-	const startPoint = getRandomRescuePoint(pos);
+	// const startPoint = getRandomRescuePoint(pos);
 }
 
 /**
