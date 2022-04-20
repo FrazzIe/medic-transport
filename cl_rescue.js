@@ -196,6 +196,30 @@ function getDeliveryPoint(pos)
 }
 
 /**
+ * Get end point for rescue
+ * @param {[number, number, number]} pos player position
+ * @returns {[number, number, number]} end point
+ */
+function getEndPoint(pos)
+{
+	// get closest node from player position
+	const [nodeFound, node] = getVector2ClosestVehicleNode(pos);
+	
+	if (nodeFound)
+	{
+		const dist = getVector2Distance(pos, node);
+
+		// ensure vehicle node is close enough to player
+		if (dist < RESCUE_NODE_DIST)
+		{
+			return [node[0], node[1], node[2]];
+		}		
+	}
+
+	return [pos[0], pos[1], pos[2]];
+}
+
+/**
  * Determine the best method to use in rescue attempt
  * @param {number} ped 
  * @param {number[]} pos 
@@ -350,6 +374,8 @@ function startRescue()
 	const deliveryPoint = getDeliveryPoint(pos);
 	// calc start point
 	const startPoint = getStartPoint(pos);
+	// calc end point
+	const endPoint = getEndPoint(pos);
 }
 
 /**
