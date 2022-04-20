@@ -1,4 +1,4 @@
-/// <reference path="node_modules/@citizenfx/client/index.d.ts"/>
+/// <reference path="node_modules/@citizenfx/server/index.d.ts"/>
 
 /*
 	Revive handler
@@ -10,10 +10,13 @@
  */
 function onRevivePlayer(target)
 {
-	if (target == null)
+	if (target == null || deaths[target] == null)
 	{
 		return;
 	}
+
+	// mark as alive
+	delete deaths[target];
 
 	// revive player
 	emitNet("playerRevived", target);
