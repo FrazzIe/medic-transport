@@ -361,7 +361,7 @@ function getRescueType(ped, pos)
 /**
  * Try to rescue a downed player and bring them to the hospital for revival
  */
-function startRescue()
+async function startRescue()
 {
 	const ped = PlayerPedId();
 	const pos = GetEntityCoords(ped);
@@ -378,8 +378,7 @@ function startRescue()
 	// ensure air rescue isn't obstructed by a collision above entity
 	if (rescueType == RESCUE_TYPES.AIR)
 	{
-		const [status, hit] = await raycast(pos, [ pos[0], pos[1], pos[2] + RESCUE_COLLISION_OFFSET], ped, 1 | 16);
-		
+		const [status, hit] = await raycast(pos, [pos[0], pos[1], pos[2] + RESCUE_COLLISION_OFFSET], ped, 1 | 16);
 		// is air rescue obstructed
 		if (status == 2 && hit)
 		{
