@@ -14,7 +14,7 @@ let playerSpawned;
 async function spawnPlayer()
 {
 	// prevent reviving until the player is no longer moving
-	while(IsPedFalling(PlayerPedId()) || IsPedRagdoll(PlayerPedId()))
+	while (IsPedFalling(PlayerPedId()) || IsPedRagdoll(PlayerPedId()))
 	{
 		await delay(0);
 	}
