@@ -124,6 +124,30 @@ function getVector2Distance(x, y)
 }
 
 /**
+ * Calculate the closest vehicle node for vector2
+ * @param {[number, number]} point vector2
+ * @param {boolean} [getHeading] get node with heading
+ * @returns {[boolean, [ number, number, number ], number]}
+ */
+function getVector2ClosestVehicleNode(point, getHeading = false)
+{
+	// get heightmap bottom
+	const bottom = GetHeightmapBottomZForPosition(point[0], point[1]);
+
+	// is heading needed?
+	if (getHeading)
+	{
+		// get node w/ heading
+		return GetClosestVehicleNodeWithHeading(point[0], point[1], bottom, 1, 3.0, 0);
+	}
+
+	// get node
+	const [found, node] = GetClosestVehicleNode(point[0], point[1], bottom, 1, 3.0, 0);
+
+	return [found, node, 0.0];	
+}
+
+/**
  * Cast a ray to a point to get intersect
  * @param {[number, number, number]} from start vector
  * @param {[number, number, number]} to end vector
