@@ -183,6 +183,31 @@ function getRandomRescuePoint(pos)
 }
 
 /**
+ * Get delivery point for rescue
+ * @param {[number, number, number]} pos
+ * @returns {[number, number, number]} delivery point
+ */
+function getDeliveryPoint(pos)
+{
+	// get closest hospital
+	const closestHospital = getClosestHospital(pos);
+	// calc random point
+	const randomPoint = getVector2Random(pos, closestHospital, 0.2, 0.5);
+	// get closest node from random point
+	const [nodeFound, node] = getVector2ClosestVehicleNode(randomPoint);
+
+	if (nodeFound)
+	{
+		return [node[0], node[1], node[2]];
+	}
+
+	// get heightmap bottom
+	const bottom = GetHeightmapBottomZForPosition(randomPoint[0], randomPoint[1]);
+
+	return [randomPoint[0], randomPoint[1], bottom];
+}
+
+/**
  * Determine the best method to use in rescue attempt
  * @param {number} ped 
  * @param {number[]} pos 
@@ -333,10 +358,8 @@ function startRescue()
 	// -----------------------------------------------------
 	// prepare key positions needed for rescue
 
-	// get closest hospital
-	const closestHospital = getClosestHospital(pos);
 	// calc delivery point
-	const deliveryPoint = getVector2Random(pos, closestHospital, 0.2, 0.5);
+	const deliveryPoint = getDeliveryPoint(pos);
 	// calc start point
 	const startPoint = getRandomRescuePoint(pos);
 }
