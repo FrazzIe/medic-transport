@@ -148,8 +148,31 @@ function getClosestHospital(pos)
 }
 
 /**
+ * Get start point for rescue
+ * @param {[number, number, number]} pos player position
+ * @returns {[number, number, number, number]} start point
+ */
+function getStartPoint(pos)
+{
+	// get random point offset
+	const randomPoint = getVector2RandomOffset(pos, RESCUE_SPAWN_DIST);
+	// get closest node from random point offset
+	const [nodeFound, node, nodeHeading] = getVector2ClosestVehicleNode(randomPoint, true);
+	
+	if (nodeFound)
+	{
+		return [node[0], node[1], node[2], nodeHeading];
+	}
+
+	// get heightmap bottom
+	const bottom = GetHeightmapBottomZForPosition(randomPoint[0], randomPoint[1]);
+
+	return [randomPoint[0], randomPoint[1], bottom, 0.0];
+}
+
+/**
  * Get delivery point for rescue
- * @param {[number, number, number]} pos
+ * @param {[number, number, number]} pos player position
  * @returns {[number, number, number]} delivery point
  */
 function getDeliveryPoint(pos)
@@ -326,7 +349,7 @@ function startRescue()
 	// calc delivery point
 	const deliveryPoint = getDeliveryPoint(pos);
 	// calc start point
-	// const startPoint = getRandomRescuePoint(pos);
+	const startPoint = getStartPoint(pos);
 }
 
 /**
