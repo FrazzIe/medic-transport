@@ -301,9 +301,9 @@ function getRescueType(ped, pos)
 }
 
 /**
- * Listen for a players death
+ * Try to rescue a downed player and bring them to the hospital for revival
  */
-function onPlayerDeath()
+function startRescue()
 {
 	const ped = PlayerPedId();
 	const pos = GetEntityCoords(ped);
@@ -339,6 +339,14 @@ function onPlayerDeath()
 	const deliveryPoint = getVector2Random(pos, closestHospital, 0.2, 0.5);
 	// calc start point
 	const startPoint = getRandomRescuePoint(pos);
+}
+
+/**
+ * Listen for a players death
+ */
+function onPlayerDeath()
+{
+	// TODO
 }
 
 /**
