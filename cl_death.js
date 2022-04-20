@@ -148,7 +148,7 @@ function onPlayerRespawned()
 
 	playerDeadTick = setTick(onPlayerDeadTick);
 
-	emit("playerDead");
+	emitNet("playerDead");
 }
 
 /**
@@ -198,5 +198,5 @@ function init()
 	on("playerRespawned", onPlayerRespawned);
 	onNet("playerRevived", onPlayerRevived);
 }
- 
+
 init();
