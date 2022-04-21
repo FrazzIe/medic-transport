@@ -152,7 +152,7 @@ const RESCUE_VEHICLES =
 {
 	GROUND: "ambulance",
 	AIR: "polmav"
-}
+};
 
 /**
  * Available rescue drivers for each rescue type
@@ -161,7 +161,26 @@ const RESCUE_DRIVER =
 {
 	GROUND: "s_m_m_paramedic_01",
 	AIR: "s_m_m_pilot_02"
-}
+};
+
+/**
+ * Available rescue passengers for each rescue type
+ */
+const RESCUE_PASSENGER = 
+{
+	GROUND: 
+	{
+		model: "s_m_m_paramedic_01",
+		seat: 1,
+		count: 1
+	},
+	AIR:
+	{
+		model: "s_m_m_paramedic_01",
+		seat: 2,
+		count: 2
+	}
+};
 
 /**
  * Get closest hospital to position
