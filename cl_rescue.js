@@ -170,78 +170,6 @@ function getClosestHospital(pos)
 }
 
 /**
- * Get start point for rescue
- * @param {[number, number, number]} pos player position
- * @returns {[number, number, number, number]} start point
- */
-function getStartPoint(pos)
-{
-	// get random point offset
-	const randomPoint = getVector2RandomOffset(pos, RESCUE_SPAWN_DIST);
-	// get closest node from random point offset
-	const [nodeFound, node, nodeHeading] = getVector2ClosestVehicleNode(randomPoint, true);
-	
-	if (nodeFound)
-	{
-		return [node[0], node[1], node[2], nodeHeading];
-	}
-
-	// get heightmap bottom
-	const bottom = GetHeightmapBottomZForPosition(randomPoint[0], randomPoint[1]);
-
-	return [randomPoint[0], randomPoint[1], bottom, 0.0];
-}
-
-/**
- * Get delivery point for rescue
- * @param {[number, number, number]} pos player position
- * @returns {[number, number, number]} delivery point
- */
-function getDeliveryPoint(pos)
-{
-	// get closest hospital
-	const closestHospital = getClosestHospital(pos);
-	// calc random point
-	const randomPoint = getVector2Random(pos, closestHospital, 0.2, 0.5);
-	// get closest node from random point
-	const [nodeFound, node] = getVector2ClosestVehicleNode(randomPoint);
-
-	if (nodeFound)
-	{
-		return [node[0], node[1], node[2]];
-	}
-
-	// get heightmap bottom
-	const bottom = GetHeightmapBottomZForPosition(randomPoint[0], randomPoint[1]);
-
-	return [randomPoint[0], randomPoint[1], bottom];
-}
-
-/**
- * Get end point for rescue
- * @param {[number, number, number]} pos player position
- * @returns {[number, number, number]} end point
- */
-function getEndPoint(pos)
-{
-	// get closest node from player position
-	const [nodeFound, node] = getVector2ClosestVehicleNode(pos);
-	
-	if (nodeFound)
-	{
-		const dist = getVector2Distance(pos, node);
-
-		// ensure vehicle node is close enough to player
-		if (dist < RESCUE_NODE_DIST)
-		{
-			return [node[0], node[1], node[2]];
-		}		
-	}
-
-	return [pos[0], pos[1], pos[2]];
-}
-
-/**
  * Determine the best method to use in rescue attempt
  * @param {number} ped 
  * @param {number[]} pos 
@@ -362,6 +290,78 @@ function getRescueType(ped, pos)
 	}
 
 	return RESCUE_TYPES.GROUND;
+}
+
+/**
+ * Get start point for rescue
+ * @param {[number, number, number]} pos player position
+ * @returns {[number, number, number, number]} start point
+ */
+function getStartPoint(pos)
+{
+	// get random point offset
+	const randomPoint = getVector2RandomOffset(pos, RESCUE_SPAWN_DIST);
+	// get closest node from random point offset
+	const [nodeFound, node, nodeHeading] = getVector2ClosestVehicleNode(randomPoint, true);
+	
+	if (nodeFound)
+	{
+		return [node[0], node[1], node[2], nodeHeading];
+	}
+
+	// get heightmap bottom
+	const bottom = GetHeightmapBottomZForPosition(randomPoint[0], randomPoint[1]);
+
+	return [randomPoint[0], randomPoint[1], bottom, 0.0];
+}
+
+/**
+ * Get delivery point for rescue
+ * @param {[number, number, number]} pos player position
+ * @returns {[number, number, number]} delivery point
+ */
+function getDeliveryPoint(pos)
+{
+	// get closest hospital
+	const closestHospital = getClosestHospital(pos);
+	// calc random point
+	const randomPoint = getVector2Random(pos, closestHospital, 0.2, 0.5);
+	// get closest node from random point
+	const [nodeFound, node] = getVector2ClosestVehicleNode(randomPoint);
+
+	if (nodeFound)
+	{
+		return [node[0], node[1], node[2]];
+	}
+
+	// get heightmap bottom
+	const bottom = GetHeightmapBottomZForPosition(randomPoint[0], randomPoint[1]);
+
+	return [randomPoint[0], randomPoint[1], bottom];
+}
+
+/**
+ * Get end point for rescue
+ * @param {[number, number, number]} pos player position
+ * @returns {[number, number, number]} end point
+ */
+function getEndPoint(pos)
+{
+	// get closest node from player position
+	const [nodeFound, node] = getVector2ClosestVehicleNode(pos);
+	
+	if (nodeFound)
+	{
+		const dist = getVector2Distance(pos, node);
+
+		// ensure vehicle node is close enough to player
+		if (dist < RESCUE_NODE_DIST)
+		{
+			return [node[0], node[1], node[2]];
+		}		
+	}
+
+	return [pos[0], pos[1], pos[2]];
 }
 
 /**
