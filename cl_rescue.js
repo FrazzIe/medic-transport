@@ -182,6 +182,7 @@ function getClosestHospital(pos)
  * Determine the best method to use in rescue attempt
  * @param {number} ped 
  * @param {number[]} pos 
+ * @returns {string} rescue type
  */
 function getRescueType(ped, pos)
 {
@@ -374,6 +375,49 @@ function getEndPoint(pos)
 }
 
 /**
+ * Creates a rescue vehicle at specific point with heading
+ * @param {[number, number, number, number]} point 
+ * @param {string} rescueType 
+ * @returns {number} vehicle handle
+ */
+function createRescueVehicle(point, rescueType)
+{
+	// get vehicle model
+	const model = RESCUE_VEHICLES[rescueType];
+
+	// load vehicle model
+	const loaded = loadModel(model);
+
+	// prevent execution on load failure
+	if (!loaded)
+	{
+		return 0;
+	}
+	
+	// create vehicle
+	const vehicle = CreateVehicle(model, point[0], point[1], point[2], point[3], true, false);
+
+	// rescue type specific vehicle options
+	if (rescueType == RESCUE_TYPES.GROUND)
+	{
+		SetVehicleOnGroundProperly(vehicle);
+	}
+	
+	if (rescueType == RESCUE_TYPES.AIR)
+	{
+		SetVehicleLivery(vehicle, 1);
+	}
+
+	// enable siren
+	SetVehicleSiren(vehicle, true);
+
+	// unload model from memory
+	SetModelAsNoLongerNeeded(model);
+
+	return vehicle;
+}
+
+/**
  * Try to rescue a downed player and bring them to the hospital for revival
  */
 async function startRescue()
@@ -425,14 +469,10 @@ async function startRescue()
 		endPoint[1] = pos[1];
 	}
 
-	// get vehicle model
-	const model = RESCUE_VEHICLES[rescueType];
+	const vehicle = createRescueVehicle(startPoint, rescueType);
 
-	// load vehicle model
-	const loaded = loadModel(model);
-
-	// prevent execution on load failure
-	if (!loaded)
+	// handle vehicle creation failure
+	if (vehicle == 0)
 	{
 		return;
 	}
