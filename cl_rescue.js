@@ -9,9 +9,9 @@
  */
 const RESCUE_TYPES =
 {
-	NONE: 0,
-	GROUND: 1,
-	AIR: 2
+	NONE: "NONE",
+	GROUND: "GROUND",
+	AIR: "AIR"
 };
 
 /**
