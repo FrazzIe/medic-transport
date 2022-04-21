@@ -402,6 +402,8 @@ async function startRescue()
 	const startPoint = getStartPoint(pos);
 	// calc end point
 	const endPoint = getEndPoint(pos);
+
+	emitNet("playerRescue", rescueType, startPoint, endPoint, pos, deliveryPoint);
 }
 
 /**
