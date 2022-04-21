@@ -427,6 +427,16 @@ async function startRescue()
 
 	// get vehicle model
 	const model = RESCUE_VEHICLES[rescueType];
+
+	// load vehicle model
+	const loaded = loadModel(model);
+
+	// prevent execution on load failure
+	if (!loaded)
+	{
+		return;
+	}
+	
 }
 
 /**
