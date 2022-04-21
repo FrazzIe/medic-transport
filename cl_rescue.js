@@ -416,6 +416,17 @@ async function createRescueVehicle(point, rescueType)
 }
 
 /**
+ * Creates 2-3 rescue personnel inside vehicle
+ * @param {number} vehicle vehicle handle
+ * @param {string} rescueType 
+ * @returns {number[]} rescue personnel
+ */
+async function createRescuePersonnel(vehicle, rescueType)
+{
+	//CreatePedInsideVehicle(vehicle, 4, )
+}
+
+/**
  * Try to rescue a downed player and bring them to the hospital for revival
  */
 async function startRescue()
