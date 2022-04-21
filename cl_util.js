@@ -205,3 +205,36 @@ async function raycast(from, to, ignore = null, flags = -1)
 
 	return result;
 }
+
+/**
+ * Number of miliseconds to wait before giving up on model load
+ */
+const LOAD_MODEL_TIMEOUT = 10000;
+
+/**
+ * Load a model into memory
+ * @param {string | number} model 
+ * @returns {boolean} success
+ */
+async function loadModel(model)
+{
+	// check if model is valid
+	if (!IsModelInCdimage(model))
+	{
+		return false;
+	}
+
+	// request model
+	RequestModel(model);
+
+	const timeout = GetGameTimer() + LOAD_MODEL_TIMEOUT;
+
+	// wait for model to load
+	while (!HasModelLoaded(model) && GetGameTimer() < timeout)
+	{
+		await delay(0);
+	}
+
+	return HasModelLoaded(model);
+}
+}
