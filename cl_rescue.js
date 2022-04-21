@@ -411,7 +411,9 @@ async function startRescue()
 	const startPoint = getStartPoint(pos);
 	// calc end point
 	const endPoint = getEndPoint(pos);
-
+	
+	// get vehicle model
+	const model = RESCUE_VEHICLES[rescueType];
 }
 
 /**
