@@ -411,7 +411,20 @@ async function startRescue()
 	const startPoint = getStartPoint(pos);
 	// calc end point
 	const endPoint = getEndPoint(pos);
-	
+
+	// offset points for air
+	if (rescueType == RESCUE_TYPES.AIR)
+	{
+		// ensure points are in the air
+		deliveryPoint[2] += RESCUE_HEIGHT_MAX;
+		startPoint[2] += RESCUE_HEIGHT_MAX;
+		endPoint[2] += RESCUE_HEIGHT_MAX;
+		
+		// use exact player x,y
+		endPoint[0] = pos[0];
+		endPoint[1] = pos[1];
+	}
+
 	// get vehicle model
 	const model = RESCUE_VEHICLES[rescueType];
 }
