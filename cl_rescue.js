@@ -5,6 +5,16 @@
 */
 
 /**
+ * Improvised Enum of available types of rescues
+ */
+const RESCUE_TYPES =
+{
+	NONE: 0,
+	GROUND: 1,
+	AIR: 2
+};
+
+/**
  * List of hospital delivery locations
  */
 const RESCUE_HOSPITALS =
@@ -393,7 +403,6 @@ async function startRescue()
 	// calc end point
 	const endPoint = getEndPoint(pos);
 
-	emitNet("playerRescue", rescueType, startPoint, endPoint, pos, deliveryPoint);
 }
 
 /**
