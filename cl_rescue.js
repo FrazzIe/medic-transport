@@ -146,6 +146,15 @@ const RESCUE_PATH_HEIGHT = 5.0;
 const RESCUE_COLLISION_OFFSET = 100.0;
 
 /**
+ * Available rescue vehicles for each rescue type
+ */
+const RESCUE_VEHICLES =
+{
+	GROUND: "ambulance",
+	AIR: "polmav"
+}
+
+/**
  * Get closest hospital to position
  * @param {number[]} pos 
  */
