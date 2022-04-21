@@ -155,6 +155,15 @@ const RESCUE_VEHICLES =
 }
 
 /**
+ * Available rescue drivers for each rescue type
+ */
+const RESCUE_DRIVER =
+{
+	GROUND: "s_m_m_paramedic_01",
+	AIR: "s_m_m_pilot_02"
+}
+
+/**
  * Get closest hospital to position
  * @param {number[]} pos 
  */
