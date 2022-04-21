@@ -451,7 +451,16 @@ async function createRescueVehicle(point, rescueType)
  */
 async function createRescuePersonnel(vehicle, rescueType)
 {
-	//CreatePedInsideVehicle(vehicle, 4, )
+	const personnel = [];
+
+	// create driver / pilot
+	const driverModel = RESCUE_DRIVER[rescueType];
+	const driverLoaded = await loadModel(driver);
+	const driver = CreatePedInsideVehicle(vehicle, 4, driver, -1, true, false);
+
+	// add driver to personnel
+	personnel[personnel.length] = driver;
+
 }
 
 /**
