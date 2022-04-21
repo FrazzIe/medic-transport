@@ -380,13 +380,13 @@ function getEndPoint(pos)
  * @param {string} rescueType 
  * @returns {number} vehicle handle
  */
-function createRescueVehicle(point, rescueType)
+async function createRescueVehicle(point, rescueType)
 {
 	// get vehicle model
 	const model = RESCUE_VEHICLES[rescueType];
 
 	// load vehicle model
-	const loaded = loadModel(model);
+	const loaded = await loadModel(model);
 
 	// prevent execution on load failure
 	if (!loaded)
@@ -403,10 +403,8 @@ function createRescueVehicle(point, rescueType)
 		SetVehicleOnGroundProperly(vehicle);
 	}
 	
-	if (rescueType == RESCUE_TYPES.AIR)
-	{
-		SetVehicleLivery(vehicle, 1);
-	}
+	// set livery
+	SetVehicleLivery(vehicle, 1);
 
 	// enable siren
 	SetVehicleSiren(vehicle, true);
@@ -469,7 +467,7 @@ async function startRescue()
 		endPoint[1] = pos[1];
 	}
 
-	const vehicle = createRescueVehicle(startPoint, rescueType);
+	const vehicle = await createRescueVehicle(startPoint, rescueType);
 
 	// handle vehicle creation failure
 	if (vehicle == 0)
