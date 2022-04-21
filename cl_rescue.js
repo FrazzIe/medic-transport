@@ -549,7 +549,15 @@ async function startRescue()
 	{
 		return;
 	}
-	
+
+	const [personnelCreated, personnel] = await createRescuePersonnel(vehicle, rescueType);
+
+	// handle personnel creation failure
+	if (!personnelCreated)
+	{
+		return;
+	}
+
 }
 
 /**
