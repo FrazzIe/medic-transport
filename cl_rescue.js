@@ -447,7 +447,7 @@ async function createRescueVehicle(point, rescueType)
  * Creates 2-3 rescue personnel inside vehicle
  * @param {number} vehicle vehicle handle
  * @param {string} rescueType 
- * @returns {number[]} rescue personnel
+ * @returns {[boolean, number[]]} rescue personnel
  */
 async function createRescuePersonnel(vehicle, rescueType)
 {
@@ -455,8 +455,15 @@ async function createRescuePersonnel(vehicle, rescueType)
 
 	// create driver / pilot
 	const driverModel = RESCUE_DRIVER[rescueType];
-	const driverLoaded = await loadModel(driver);
-	const driver = CreatePedInsideVehicle(vehicle, 4, driver, -1, true, false);
+	const driverLoaded = await loadModel(driverModel);
+
+	// prevent execution on load failure
+	if (!driverLoaded)
+	{
+		return [false, null];
+	}
+
+	const driver = CreatePedInsideVehicle(vehicle, 4, driverModel, -1, true, false);
 
 	// add driver to personnel
 	personnel[personnel.length] = driver;
