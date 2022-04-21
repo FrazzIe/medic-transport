@@ -468,6 +468,26 @@ async function createRescuePersonnel(vehicle, rescueType)
 	// add driver to personnel
 	personnel[personnel.length] = driver;
 
+	// get passenger info
+	const passengerInfo = RESCUE_PASSENGER[rescueType];
+	const passengerLoaded = await loadModel(passengerInfo.model);
+
+	// prevent execution on load failure
+	if (!passengerLoaded)
+	{
+		return [false, null];
+	}
+
+	// create passengers
+	for (let i = 0; i < passengerInfo.count; i++)
+	{
+		const passenger = CreatePedInsideVehicle(vehicle, 4, passengerInfo.model, ++passengerInfo.seat, true, false);
+
+		// add passenger to personnel
+		personnel[personnel.length] = passenger;
+	}
+
+	return [true, personnel];
 }
 
 /**
