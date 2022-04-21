@@ -1,3 +1,9 @@
+/// <reference path="node_modules/@citizenfx/client/index.d.ts"/>
+
+/*
+	Manage player rescue
+*/
+
 /**
  * Improvised Enum of available types of rescues
  */
