@@ -4,6 +4,8 @@
 	Manage player rescue
 */
 
+const rescues = {};
+
 /**
  * Listen for initiation of a player rescue
  * @param {number} rescueType 
@@ -16,6 +18,11 @@ function onPlayerRescue(rescueType, startPoint, endPoint, targetPoint, deliveryP
 {
 	const src = global.source;
 
+	// prevent initiating a rescue that's already on-going
+	if (rescues[src] != null)
+	{
+		return;
+	}
 }
 
 /**
