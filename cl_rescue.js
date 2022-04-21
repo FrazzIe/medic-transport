@@ -171,13 +171,13 @@ const RESCUE_PASSENGER =
 	GROUND: 
 	{
 		model: "s_m_m_paramedic_01",
-		seat: 1,
+		seat: 0,
 		count: 1
 	},
 	AIR:
 	{
 		model: "s_m_m_paramedic_01",
-		seat: 2,
+		seat: 1,
 		count: 2
 	}
 };
