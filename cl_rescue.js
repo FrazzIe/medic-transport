@@ -481,7 +481,7 @@ async function createRescuePersonnel(vehicle, rescueType)
 	// create passengers
 	for (let i = 0; i < passengerInfo.count; i++)
 	{
-		const passenger = CreatePedInsideVehicle(vehicle, 4, passengerInfo.model, ++passengerInfo.seat, true, false);
+		const passenger = CreatePedInsideVehicle(vehicle, 4, passengerInfo.model, passengerInfo.seat + i, true, false);
 
 		// add passenger to personnel
 		personnel[personnel.length] = passenger;
