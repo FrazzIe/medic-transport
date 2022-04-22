@@ -208,6 +208,11 @@ const RESCUE_STYLES =
 }
 
 /**
+ * Range at which a vehicle can stop within the target destination
+ */
+const RESCUE_VEHICLE_STOP_RANGE = 5.0;
+
+/**
  * Get closest hospital to position
  * @param {number[]} pos 
  */
@@ -603,7 +608,7 @@ async function startRescue()
 	const style = RESCUE_STYLES[rescueType];
 
 	// drive vehicle to point
-	TaskVehicleDriveToCoord(driver, vehicle, endPoint[0], endPoint[1], endPoint[2], speed, 0, model, style, 5.0, 0.0);
+	TaskVehicleDriveToCoord(driver, vehicle, endPoint[0], endPoint[1], endPoint[2], speed, 0, model, style, RESCUE_VEHICLE_STOP_RANGE, 0.0);
 }
 
 /**
