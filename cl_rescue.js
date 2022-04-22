@@ -194,6 +194,15 @@ const RESCUE_SPEED =
 }
 
 /**
+ * Styles of driving used by rescue vehicle drivers
+ */
+const RESCUE_STYLES = 
+{
+	GROUND: 262148,
+	AIR: 262144
+}
+
+/**
  * Get closest hospital to position
  * @param {number[]} pos 
  */
@@ -585,9 +594,11 @@ async function startRescue()
 	const speed = RESCUE_SPEED[rescueType] / MPH_OFFSET;
 	// get vehicle model
 	const model = RESCUE_VEHICLES[rescueType];
+	// get driving style
+	const style = RESCUE_STYLES[rescueType];
 
 	// drive vehicle to point
-	TaskVehicleDriveToCoord(driver, vehicle, endPoint[0], endPoint[1], endPoint[2], speed, 0, model, 15.0, 0.0);
+	TaskVehicleDriveToCoord(driver, vehicle, endPoint[0], endPoint[1], endPoint[2], speed, 0, model, style, 5.0, 0.0);
 }
 
 /**
