@@ -540,6 +540,9 @@ async function startRescue()
 		// use exact player x,y
 		endPoint[0] = pos[0];
 		endPoint[1] = pos[1];
+
+		// point vehicle towards end point
+		startPoint[3] = GetHeadingFromVector_2d(endPoint[0] - startPoint[0], endPoint[1] - startPoint[1]);
 	}
 
 	const vehicle = await createRescueVehicle(startPoint, rescueType);
