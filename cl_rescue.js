@@ -578,6 +578,15 @@ async function startRescue()
 		return;
 	}
 
+	// get vehicle driver
+	const driver = personnel[0];
+	// get vehicle travelling speed
+	const speed = RESCUE_SPEED[rescueType] / MPH_OFFSET;
+	// get vehicle model
+	const model = RESCUE_VEHICLES[rescueType];
+
+	// drive vehicle to point
+	TaskVehicleDriveToCoord(driver, vehicle, endPoint[0], endPoint[1], endPoint[2], speed, 0, model, 15.0, 0.0);
 }
 
 /**
