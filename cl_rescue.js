@@ -146,6 +146,11 @@ const RESCUE_PATH_HEIGHT = 5.0;
 const RESCUE_COLLISION_OFFSET = 100.0;
 
 /**
+ * Height offset above target position needed to rappel down
+ */
+const RESCUE_RAPPEL_HEIGHT = 10.0;
+
+/**
  * Available rescue vehicles for each rescue type
  */
 const RESCUE_VEHICLES =
@@ -564,9 +569,9 @@ async function startRescue()
 		endPoint[2] = pos[2];
 
 		// ensure points are in the air
-		deliveryPoint[2] += RESCUE_HEIGHT_MAX;
-		startPoint[2] += RESCUE_HEIGHT_MAX;
-		endPoint[2] += RESCUE_HEIGHT_MAX;
+		deliveryPoint[2] += RESCUE_RAPPEL_HEIGHT;
+		startPoint[2] += RESCUE_RAPPEL_HEIGHT;
+		endPoint[2] += RESCUE_RAPPEL_HEIGHT;
 
 		// point vehicle towards end point
 		startPoint[3] = GetHeadingFromVector_2d(endPoint[0] - startPoint[0], endPoint[1] - startPoint[1]);
