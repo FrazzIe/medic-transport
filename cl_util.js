@@ -1,4 +1,9 @@
 /**
+ * Miles per hour offset
+ */
+const MPH_OFFSET = 2.236936;
+
+/**
  * 
  * Waits a minimum amount of time, note that this can be longer, but
  * it is guaranteed to be atleast the specified amount of time
