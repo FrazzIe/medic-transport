@@ -15,6 +15,17 @@ const RESCUE_TYPES =
 };
 
 /**
+ * Improvided Enum of rescue stages
+ */
+const RESCUE_STAGES =
+{
+	GOTO_PLAYER: "GOTO_PLAYER",
+	FETCH_PLAYER: "FETCH_PLAYER",
+	STORE_PLAYER: "STORE_PLAYER",
+	GOTO_HOSPITAL: "GOTO_HOSPITAL"
+};
+
+/**
  * List of hospital delivery locations
  */
 const RESCUE_HOSPITALS =
