@@ -549,14 +549,15 @@ async function startRescue()
 	// offset points for air
 	if (rescueType == RESCUE_TYPES.AIR)
 	{
+		// use exact player x,y,z
+		endPoint[0] = pos[0];
+		endPoint[1] = pos[1];
+		endPoint[2] = pos[2];
+
 		// ensure points are in the air
 		deliveryPoint[2] += RESCUE_HEIGHT_MAX;
 		startPoint[2] += RESCUE_HEIGHT_MAX;
 		endPoint[2] += RESCUE_HEIGHT_MAX;
-		
-		// use exact player x,y
-		endPoint[0] = pos[0];
-		endPoint[1] = pos[1];
 
 		// point vehicle towards end point
 		startPoint[3] = GetHeadingFromVector_2d(endPoint[0] - startPoint[0], endPoint[1] - startPoint[1]);
