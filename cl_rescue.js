@@ -465,6 +465,12 @@ async function createRescuePersonnel(vehicle, rescueType)
 
 	const driver = CreatePedInsideVehicle(vehicle, 4, driverModel, -1, true, false);
 
+	// give pilot helmet
+	if (rescueType == RESCUE_TYPES.AIR)
+	{
+		GivePedHelmet(driver, true, 1, 65536);
+	}
+
 	// add driver to personnel
 	personnel[personnel.length] = driver;
 
