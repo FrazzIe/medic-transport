@@ -183,6 +183,17 @@ const RESCUE_PASSENGER =
 };
 
 /**
+ * Speed at which vehicles go when travelling to a point
+ * 
+ * MPH
+ */
+const RESCUE_SPEED =
+{
+	GROUND: 55,
+	AIR: 90
+}
+
+/**
  * Get closest hospital to position
  * @param {number[]} pos 
  */
