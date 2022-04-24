@@ -31,6 +31,16 @@ const RESCUE_STAGES =
 };
 
 /**
+ * Improvided Enum of rescue status
+ */
+const RESCUE_STATUS =
+{
+	FAILED: "FAILED",
+	ONGOING: "ONGOING",
+	COMPLETE: "COMPLETE"
+};
+
+/**
  * Collision offset used in checking for air rescue collision obstructions
  * 
  * GTA Metres
