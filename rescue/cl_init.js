@@ -41,11 +41,6 @@ const RESCUE_STATUS =
 };
 
 /**
- * Range at which a vehicle can stop within the target destination
- */
-const RESCUE_VEHICLE_STOP_RANGE = 5.0;
-
-/**
  * Try to rescue a downed player and bring them to the hospital for revival
  */
 async function startRescue()

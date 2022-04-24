@@ -26,6 +26,11 @@ const RESCUE_VEHICLE_STYLE =
 	AIR: 262144
 }
 
+/**
+ * Range at which a vehicle can stop within the target destination
+ */
+const RESCUE_VEHICLE_STOP_RANGE = 5.0;
+
 function onStageBegin()
 {
 	// get vehicle driver
