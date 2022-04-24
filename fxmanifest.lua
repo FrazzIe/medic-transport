@@ -6,7 +6,7 @@ description ""
 version "0.1"
 
 client_scripts {
-	"cl_*.*"
+	"**cl_*.*"
 }
 
 server_scripts {

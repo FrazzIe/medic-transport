@@ -1,6 +1,8 @@
 /// <reference path="node_modules/@citizenfx/client/index.d.ts"/>
 
 /*
+	GET TYPE STAGE
+
 	Determine the best method to use in rescue attempt
 */
 
@@ -52,6 +54,13 @@ const RESCUE_PATH_DIST = 15.0;
  * GTA Metres
  */
 const RESCUE_PATH_HEIGHT = 5.0;
+
+/**
+ * Collision offset used in checking for air rescue collision obstructions
+ * 
+ * GTA Metres
+ */
+const RESCUE_COLLISION_OFFSET = 100.0;
 
 /**
  * Determine the best method to use in rescue attempt
@@ -175,4 +184,31 @@ function getRescueType(ped, pos)
 	}
 
 	return RESCUE_TYPES.GROUND;
+}
+
+function onStageBegin()
+{
+	const ped = PlayerPedId();
+	const pos = GetEntityCoords(ped);
+
+	// determine type of rescue
+	let rescueType = getRescueType(ped, pos);
+
+	// stop rescue
+	if (rescueType == RESCUE_TYPES.NONE)
+	{
+		return;
+	}
+
+	// ensure air rescue isn't obstructed by a collision above entity
+	if (rescueType == RESCUE_TYPES.AIR)
+	{
+		const [status, hit] = await raycast(pos, [pos[0], pos[1], pos[2] + RESCUE_COLLISION_OFFSET], ped, 1 | 16);
+		// is air rescue obstructed
+		if (status == 2 && hit)
+		{
+			// force ground rescue
+			rescueType = RESCUE_TYPES.GROUND;
+		}
+	}
 }

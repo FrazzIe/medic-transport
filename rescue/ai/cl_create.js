@@ -1,9 +1,9 @@
 /// <reference path="node_modules/@citizenfx/client/index.d.ts"/>
 
 /*
-	CREATE AI RESCUE STAGE
+	CREATE AI STAGE
 
-	Create vehicle for rescue and accompanying AI inside vehicle
+	Create vehicle and accompanying AI inside vehicle
 */
 
 /**

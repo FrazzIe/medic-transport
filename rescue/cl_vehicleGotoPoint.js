@@ -1,10 +1,30 @@
 /// <reference path="node_modules/@citizenfx/client/index.d.ts"/>
 
 /*
-	GOTO_PLAYER RESCUE STAGE
+	VEHICLE GOTO POINT STAGE
 
-	Manage AI and ensure they get to the player unharmed
+	Move vehicle to point
 */
+
+/**
+ * Speed at which vehicles go when travelling to a point
+ * 
+ * MPH
+ */
+const RESCUE_VEHICLE_SPEED =
+{
+	GROUND: 55,
+	AIR: 90
+}
+
+/**
+ * Styles of driving used by rescue vehicle drivers
+ */
+const RESCUE_VEHICLE_STYLE = 
+{
+	GROUND: 262148,
+	AIR: 262144
+}
 
 function onStageBegin()
 {

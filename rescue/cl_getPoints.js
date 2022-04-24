@@ -1,7 +1,7 @@
 /// <reference path="node_modules/@citizenfx/client/index.d.ts"/>
 
 /*
-	FETCH POINTS RESCUE STAGE
+	GET POINTS STAGE
 
 	Determine the start, end and delivery points for the rescue
 */
