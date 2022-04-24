@@ -11,3 +11,22 @@
  * value: rescue obj
  */
 const rescues = {};
+
+/**
+ * Start a player rescue
+ * 
+ * Called externally from the server
+ */
+function onStartRescue(src)
+{
+
+}
+
+/**
+ * Init event listeners & vars
+ */
+function init()
+{
+	// add rescuePlayer event listener
+	on("rescuePlayer", onStartRescue);
+}
