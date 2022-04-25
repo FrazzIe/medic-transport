@@ -19,6 +19,11 @@ const rescues = {};
  */
 function onStartRescue(src)
 {
+	// prevent starting another rescue
+	if (rescues[src] != null)
+	{
+		return;
+	}
 
 }
 
