@@ -31,6 +31,9 @@ function onStartRescue(src)
 		status: RESCUE_STATUS.ONGOING,
 		stageIndex: 0  
 	};
+
+	// start rescue stage
+	emitNet("rescueStage", rescues[src]);
 }
 
 /**
