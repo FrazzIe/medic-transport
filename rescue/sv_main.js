@@ -25,6 +25,12 @@ function onStartRescue(src)
 		return;
 	}
 
+	// create rescue
+	rescues[src] = 
+	{
+		status: RESCUE_STATUS.ONGOING,
+		stageIndex: 0  
+	};
 }
 
 /**
