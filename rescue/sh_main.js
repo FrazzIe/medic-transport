@@ -82,3 +82,11 @@ const RESCUE_ORDER =
 	RESCUE_STAGE.AI_DELETE,
 	RESCUE_STAGE.VEHICLE_DELETE
 ];
+
+/**
+ * Map of stage -> function
+ * 
+ * key: RESCUE_STAGE Enum
+ * value: function 
+ */
+const RESCUE_FUNCTION = {};
