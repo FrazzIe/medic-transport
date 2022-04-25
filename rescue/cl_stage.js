@@ -11,6 +11,9 @@
  */
 function onStage(rescue)
 {
+	// get curr stage
+	const stage = RESCUE_STAGE[rescue.stageIndex];
+
 
 }
 
