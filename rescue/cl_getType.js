@@ -212,3 +212,13 @@ function onStageInit(rescue)
 	}
 }
 
+/**
+ * Init event listeners & vars
+ */
+function init()
+{
+	// add stage to stage func map
+	RESCUE_FUNCTION[RESCUE_STAGE.GET_TYPE] = onStageInit;
+}
+
+init();
