@@ -195,12 +195,12 @@ function onStageInit(rescue)
 	const ped = PlayerPedId();
 
 	// determine type of rescue
-	let rescueType = getRescueType(ped, pos);
+	let rescueType = getRescueType(ped, rescue.points.player);
 
 	// ensure air rescue isn't obstructed by a collision above entity
 	if (rescueType == RESCUE_TYPES.AIR)
 	{
-		const [status, hit] = await raycast(pos, [ rescue.points.player[0], rescue.points.player[1], rescue.points.player[2] + RESCUE_COLLISION_OFFSET ], ped, 1 | 16);
+		const [status, hit] = await raycast(rescue.points.player, [ rescue.points.player[0], rescue.points.player[1], rescue.points.player[2] + RESCUE_COLLISION_OFFSET ], ped, 1 | 16);
 
 		// is air rescue obstructed
 		if (status == 2 && hit)
