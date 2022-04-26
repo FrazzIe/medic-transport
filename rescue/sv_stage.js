@@ -20,7 +20,23 @@ function onStage(payload)
 	// get curr stage
 	const lastStage = RESCUE_STAGE[rescue.stageIndex];
 
-	// TODO: handle payload
+	// TODO: handle stage payloads
+	switch(lastStage)
+	{
+		case RESCUE_STAGE.GET_TYPE:
+		{
+			// assign rescue type
+			rescue.type = payload.rescueType;
+
+			// set failed status if invalid rescue type
+			if (rescue.type == null || rescue.type == RESCUE_TYPE.NONE)
+			{
+				rescue.status = RESCUE_STATUS.FAILED;
+			}
+
+			break;
+		}
+	}
 
 	// change stage
 	// get curr stage
