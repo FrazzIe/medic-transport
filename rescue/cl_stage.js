@@ -2,7 +2,7 @@
 
 /*
 	Listen for rescue stage changes
-	& Start client-side stages
+	& Call stage init funcs
 */
 
 /**
