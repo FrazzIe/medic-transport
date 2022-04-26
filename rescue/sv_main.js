@@ -25,11 +25,23 @@ function onStartRescue(src)
 		return;
 	}
 
+	const ped = GetPlayerPed(src);
+
+	// ensure player ped exists
+	if (DoesEntityExist(ped))
+	{
+		return;
+	}
+
+	// get player coords
+	const pos = GetEntityCoords(ped);
+
 	// create rescue
 	rescues[src] = 
 	{
 		status: RESCUE_STATUS.ONGOING,
-		stageIndex: 0  
+		stageIndex: 0,
+		points: [ player: pos ]
 	};
 
 	// start rescue stage
