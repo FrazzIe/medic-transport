@@ -38,6 +38,13 @@ function onStage(payload)
 		}
 	}
 
+	// check if a failure has occured
+	if (rescue.status == RESCUE_STATUS.FAILED)
+	{
+		// TODO: handle failure
+		return;
+	}
+
 	// change stage
 	// get curr stage
 	const nextStage = RESCUE_STAGE[++rescue.stageIndex];
