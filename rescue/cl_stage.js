@@ -14,7 +14,15 @@ function onStage(rescue)
 	// get curr stage
 	const stage = RESCUE_STAGE[rescue.stageIndex];
 
+	// does stage func exist?
+	if (RESCUE_FUNCTION[stage] == null)
+	{
+		// TODO
+		return;
+	}
 
+	// call stage init
+	RESCUE_FUNCTION[stage](rescue);
 }
 
 /**
