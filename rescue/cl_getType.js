@@ -186,7 +186,11 @@ function getRescueType(ped, pos)
 	return RESCUE_TYPES.GROUND;
 }
 
-function onStageBegin()
+/**
+ * Initiate stage
+ * @returns {void}
+ */
+function onStageInit(rescue)
 {
 	const ped = PlayerPedId();
 	const pos = GetEntityCoords(ped);
@@ -194,16 +198,11 @@ function onStageBegin()
 	// determine type of rescue
 	let rescueType = getRescueType(ped, pos);
 
-	// stop rescue
-	if (rescueType == RESCUE_TYPES.NONE)
-	{
-		return;
-	}
-
 	// ensure air rescue isn't obstructed by a collision above entity
 	if (rescueType == RESCUE_TYPES.AIR)
 	{
-		const [status, hit] = await raycast(pos, [pos[0], pos[1], pos[2] + RESCUE_COLLISION_OFFSET], ped, 1 | 16);
+		const [status, hit] = await raycast(pos, [ pos[0], pos[1], pos[2] + RESCUE_COLLISION_OFFSET ], ped, 1 | 16);
+
 		// is air rescue obstructed
 		if (status == 2 && hit)
 		{
@@ -212,3 +211,4 @@ function onStageBegin()
 		}
 	}
 }
+
