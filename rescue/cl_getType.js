@@ -210,6 +210,10 @@ function onStageInit(rescue)
 			rescueType = RESCUE_TYPES.GROUND;
 		}
 	}
+
+	// end stage
+	// give server result
+	emitNet("rescueStage", { rescueType });
 }
 
 /**
