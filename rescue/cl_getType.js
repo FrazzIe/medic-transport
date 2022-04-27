@@ -190,7 +190,7 @@ function getRescueType(ped, pos)
  * Initiate stage
  * @returns {void}
  */
-function onStageInit(rescue)
+async function onStageInit(rescue)
 {
 	const ped = PlayerPedId();
 
