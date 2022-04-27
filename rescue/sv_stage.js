@@ -36,6 +36,21 @@ function onStage(payload)
 
 			break;
 		}
+		case RESCUE_STAGE.GET_POINTS:
+		{
+			// store points
+			rescue.points.start = payload.startPoint;
+			rescue.points.end = payload.endPoint;
+			rescue.points.delivery = payload.deliveryPoint;
+			
+			// set failed status if invalid points
+			if (rescue.points.start == null || rescue.points.end == null || rescue.points.delivery == null)
+			{
+				rescue.status = RESCUE_STATUS.FAILED;
+			}
+
+			break;
+		}
 	}
 
 	// check if a failure has occured
