@@ -73,7 +73,7 @@ function getRescueType(ped, pos)
 	// force air rescue if water is involved
 	if (IsPedSwimming(ped))
 	{
-		return RESCUE_TYPES.AIR;
+		return RESCUE_TYPE.AIR;
 	}
 
 	// get player interior
@@ -88,10 +88,10 @@ function getRescueType(ped, pos)
 		// is player in accessable interior (must have navmeshs)
 		if (RESCUE_INTERIOR_WHITELIST.includes(interiorHash))
 		{
-			return RESCUE_TYPES.GROUND;
+			return RESCUE_TYPE.GROUND;
 		}
 
-		return RESCUE_TYPES.NONE;
+		return RESCUE_TYPE.NONE;
 	}
 
 	// get player zone
@@ -100,7 +100,7 @@ function getRescueType(ped, pos)
 	// cancel rescue if blacklisted zone
 	if (RESCUE_ZONE_BLACKLIST.includes(zone))
 	{
-		return RESCUE_TYPES.NONE;
+		return RESCUE_TYPE.NONE;
 	}
 
 	// get heightmap bounds
@@ -110,13 +110,13 @@ function getRescueType(ped, pos)
 	// prevent rescue if not within heightmap bounds
 	if (pos[2] < bottom || pos[2] > top)
 	{
-		return RESCUE_TYPES.NONE;
+		return RESCUE_TYPE.NONE;
 	}
 
 	// force air rescue if zone can only be reached by air
 	if (RESCUE_ZONE_AIR.includes(zone))
 	{
-		return RESCUE_TYPES.AIR;
+		return RESCUE_TYPE.AIR;
 	}
 
 	// get safe position for ped
@@ -136,7 +136,7 @@ function getRescueType(ped, pos)
 			// check if length is in range of -RESCUE_PATH_HEIGHT and +RESCUE_PATH_HEIGHT
 			if (length < RESCUE_PATH_HEIGHT && length > -RESCUE_PATH_HEIGHT)
 			{
-				return RESCUE_TYPES.GROUND;
+				return RESCUE_TYPE.GROUND;
 			}
 		}
 	}
@@ -158,7 +158,7 @@ function getRescueType(ped, pos)
 			// check if length is in range of -RESCUE_NODE_HEIGHT and +RESCUE_NODE_HEIGHT
 			if (length < RESCUE_NODE_HEIGHT && length > -RESCUE_NODE_HEIGHT)
 			{
-				return RESCUE_TYPES.GROUND;
+				return RESCUE_TYPE.GROUND;
 			}
 		}
 	}
@@ -168,7 +168,7 @@ function getRescueType(ped, pos)
 
 	if (length >= RESCUE_HEIGHT_MAX)
 	{
-		return RESCUE_TYPES.AIR;
+		return RESCUE_TYPE.AIR;
 	}
 
 	// is heightmap length long enough
@@ -179,11 +179,11 @@ function getRescueType(ped, pos)
 
 		if (percentage >= RESCUE_ELEVATED_THRESHOLD)
 		{
-			return RESCUE_TYPES.AIR;
+			return RESCUE_TYPE.AIR;
 		}
 	}
 
-	return RESCUE_TYPES.GROUND;
+	return RESCUE_TYPE.GROUND;
 }
 
 /**
@@ -198,7 +198,7 @@ async function onStageInit(rescue)
 	let rescueType = getRescueType(ped, rescue.points.player);
 
 	// ensure air rescue isn't obstructed by a collision above entity
-	if (rescueType == RESCUE_TYPES.AIR)
+	if (rescueType == RESCUE_TYPE.AIR)
 	{
 		const [status, hit] = await raycast(rescue.points.player, [ rescue.points.player[0], rescue.points.player[1], rescue.points.player[2] + RESCUE_COLLISION_OFFSET ], ped, 1 | 16);
 
@@ -206,7 +206,7 @@ async function onStageInit(rescue)
 		if (status == 2 && hit)
 		{
 			// force ground rescue
-			rescueType = RESCUE_TYPES.GROUND;
+			rescueType = RESCUE_TYPE.GROUND;
 		}
 	}
 
