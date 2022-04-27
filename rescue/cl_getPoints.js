@@ -107,25 +107,28 @@ function getEndPoint(pos)
    return [pos[0], pos[1], pos[2]];
 }
 
-function onStageBegin()
+/**
+ * Initiate stage
+ * @returns {void}
+ */
+function onStageInit(rescue)
 {
-	// -----------------------------------------------------
 	// prepare key positions needed for rescue
 
 	// calc delivery point
-	const deliveryPoint = getDeliveryPoint(pos);
+	const deliveryPoint = getDeliveryPoint(rescue.points.player);
 	// calc start point
-	const startPoint = getStartPoint(pos);
+	const startPoint = getStartPoint(rescue.points.player);
 	// calc end point
-	const endPoint = getEndPoint(pos);
+	const endPoint = getEndPoint(rescue.points.player);
 
 	// offset points for air
 	if (rescueType == RESCUE_TYPES.AIR)
 	{
 		// use exact player x,y,z
-		endPoint[0] = pos[0];
-		endPoint[1] = pos[1];
-		endPoint[2] = pos[2];
+		endPoint[0] = rescue.points.player[0];
+		endPoint[1] = rescue.points.player[1];
+		endPoint[2] = rescue.points.player[2];
 
 		// ensure points are in the air
 		deliveryPoint[2] += RESCUE_RAPPEL_HEIGHT;
@@ -135,4 +138,19 @@ function onStageBegin()
 		// point vehicle towards end point
 		startPoint[3] = GetHeadingFromVector_2d(endPoint[0] - startPoint[0], endPoint[1] - startPoint[1]);
 	}
+
+	// end stage
+	// give server result
+	emitNet("rescueStage", { startPoint, endPoint, deliveryPoint });
 }
+
+/**
+ * Init event listeners & vars
+ */
+function init()
+{
+	// add stage to stage func map
+	RESCUE_FUNCTION[RESCUE_STAGE.GET_POINTS] = onStageInit;
+}
+ 
+init();
