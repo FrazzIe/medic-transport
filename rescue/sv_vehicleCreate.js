@@ -1,3 +1,11 @@
+/// <reference path="node_modules/@citizenfx/server/index.d.ts"/>
+
+/*
+	VEHICLE CREATE STAGE
+
+	Create vehicle for rescue
+*/
+
 /**
  * Initiate stage
  * @param {object} rescue
