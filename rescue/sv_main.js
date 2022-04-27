@@ -56,3 +56,6 @@ function init()
 	// add rescuePlayer event listener
 	on("rescuePlayer", onStartRescue);
 }
+
+init();
+
