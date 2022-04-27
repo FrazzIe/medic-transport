@@ -101,3 +101,5 @@ function init()
 	// add rescueStage event listener
 	onNet("rescueStage", onStage);
 }
+
+init();
