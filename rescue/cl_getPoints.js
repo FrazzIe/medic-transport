@@ -123,7 +123,7 @@ function onStageInit(rescue)
 	const endPoint = getEndPoint(rescue.points.player);
 
 	// offset points for air
-	if (rescueType == RESCUE_TYPES.AIR)
+	if (rescue.type == RESCUE_TYPE.AIR)
 	{
 		// use exact player x,y,z
 		endPoint[0] = rescue.points.player[0];
