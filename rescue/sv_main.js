@@ -28,7 +28,7 @@ function onStartRescue(src)
 	const ped = GetPlayerPed(src);
 
 	// ensure player ped exists
-	if (DoesEntityExist(ped))
+	if (!DoesEntityExist(ped))
 	{
 		return;
 	}
