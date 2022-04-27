@@ -41,7 +41,7 @@ function onStartRescue(src)
 	{
 		status: RESCUE_STATUS.ONGOING,
 		stageIndex: 0,
-		points: [ player: pos ]
+		points: { player: pos }
 	};
 
 	// start rescue stage
