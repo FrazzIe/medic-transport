@@ -12,7 +12,7 @@
 function onStage(rescue)
 {
 	// get curr stage
-	const stage = RESCUE_STAGE[rescue.stageIndex];
+	const stage = RESCUE_ORDER[rescue.stageIndex];
 
 	// does stage func exist?
 	if (RESCUE_FUNCTION[stage] == null)

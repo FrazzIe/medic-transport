@@ -18,7 +18,7 @@ function onStage(payload)
 	const rescue = rescues[src];
 
 	// get curr stage
-	const lastStage = RESCUE_STAGE[rescue.stageIndex];
+	const lastStage = RESCUE_ORDER[rescue.stageIndex];
 
 	// TODO: handle stage payloads
 	switch(lastStage)
@@ -62,7 +62,7 @@ function onStage(payload)
 
 	// change stage
 	// get curr stage
-	const nextStage = RESCUE_STAGE[++rescue.stageIndex];
+	const nextStage = RESCUE_ORDER[++rescue.stageIndex];
 
 	// start rescue stage on client
 	switch(nextStage)
