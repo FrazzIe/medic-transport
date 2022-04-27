@@ -45,7 +45,7 @@ function onStartRescue(src)
 	};
 
 	// start rescue stage
-	emitNet("rescueStage", rescues[src]);
+	emitNet("rescueStage", src, rescues[src]);
 }
 
 /**

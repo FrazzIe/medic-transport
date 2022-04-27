@@ -77,7 +77,7 @@ function onStage(payload)
 		case RESCUE_STAGE.OBJECT_DETACH_PLAYER:
 		case RESCUE_STAGE.PLAYER_TELEPORT:
 		{
-			emitNet("rescueStage", rescues[src]);
+			emitNet("rescueStage", src, rescues[src]);
 			return;
 		}
 	}
