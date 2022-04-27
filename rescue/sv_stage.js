@@ -67,6 +67,15 @@ function onStage(payload)
 		}
 	}
 
+	// does stage func exist?
+	if (RESCUE_FUNCTION[nextStage] == null)
+	{
+		// TODO
+		return;
+	}
+
+	// call stage init
+	RESCUE_FUNCTION[nextStage](src);
 }
 
 /**
