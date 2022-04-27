@@ -90,7 +90,7 @@ function onStage(payload)
 	}
 
 	// call stage init
-	RESCUE_FUNCTION[nextStage](src);
+	RESCUE_FUNCTION[nextStage](rescue, src);
 }
 
 /**
