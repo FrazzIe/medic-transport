@@ -49,7 +49,24 @@ function onStage(payload)
 	// get curr stage
 	const nextStage = RESCUE_STAGE[++rescue.stageIndex];
 
-	// TODO: handle next steps
+	// start rescue stage on client
+	switch(nextStage)
+	{
+		case RESCUE_STAGE.GET_POINTS:
+		case RESCUE_STAGE.AI_ATTACH_OBJECT:
+		case RESCUE_STAGE.AI_DETACH_OBJECT:
+		case RESCUE_STAGE.VEHICLE_GOTO_POINT:
+		case RESCUE_STAGE.VEHICLE_ATTACH_OBJECT:
+		case RESCUE_STAGE.VEHICLE_DETACH_OBJECT:
+		case RESCUE_STAGE.OBJECT_ATTACH_PLAYER:
+		case RESCUE_STAGE.OBJECT_DETACH_PLAYER:
+		case RESCUE_STAGE.PLAYER_TELEPORT:
+		{
+			emitNet("rescueStage", rescues[src]);
+			return;
+		}
+	}
+
 }
 
 /**
