@@ -6,13 +6,13 @@ description ""
 version "0.1"
 
 client_scripts {
-	"**cl_*.*"
+	"**/cl_*.*"
 }
 
 server_scripts {
-	"sv_*.*"
+	"**/sv_*.*"
 }
 
 shared_scripts {
-	"sh_*.*"
+	"**/sh_*.*"
 }
