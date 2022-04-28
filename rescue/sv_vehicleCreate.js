@@ -7,6 +7,11 @@
 */
 
 /**
+ * Number of miliseconds to wait before giving up on vehicle creation
+ */
+const CREATE_VEHICLE_TIMEOUT = 15000;
+
+/**
  * Initiate stage
  * @param {object} rescue
  * @param {number | string} src   
@@ -19,14 +24,21 @@ async function onStageInit(rescue, src)
 	// create vehicle
 	const vehicle = CreateVehicle(model, rescue.points.start[0], rescue.points.start[1], rescue.points.start[2], rescue.points.start[3], true, false);	
 
-	console.log(vehicle);
-	console.log(DoesEntityExist(vehicle));
+	const timeout = GetGameTimer() + CREATE_VEHICLE_TIMEOUT;
 
-	while (!DoesEntityExist(vehicle))
+	// wait for vehicle to be created
+	while (!DoesEntityExist(vehicle) && GetGameTimer() < timeout)
 	{
-		console.log(DoesEntityExist(vehicle), "waiting", model, rescue.points.start);
 		await delay(0);
 	}
+
+	// handle creation failure
+	if (!DoesEntityExist(vehicle))
+	{
+		return;
+	}
+
+	
 
 	console.log(NetworkGetNetworkIdFromEntity(vehicle));
 	console.log(NetworkGetEntityOwner(vehicle));
