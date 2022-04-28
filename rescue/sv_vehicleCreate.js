@@ -51,6 +51,10 @@ async function onStageInit(rescue, src)
 		// TODO
 		return;
 	}
+
+	// customise vehicle
+	emitNet("rescueCustomise", owner, rescue, netId);
+
 	// end stage
 	// send id
 	emit("rescueStage", { netId }, src);
