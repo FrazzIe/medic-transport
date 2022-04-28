@@ -8,11 +8,15 @@
 /**
  * Listen for stage completion
  * @param {object} payload 
+ * @param {string | number} [src]
  */
-function onStage(payload)
+function onStage(payload, src)
 {
 	// get player id
-	const src = global.source;
+	if (src == null)
+	{
+		src = global.source;
+	}
 
 	// get rescue object
 	const rescue = rescues[src];
