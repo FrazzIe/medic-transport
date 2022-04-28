@@ -25,7 +25,7 @@ async function onStageInit(rescue, src)
 	while (!DoesEntityExist(vehicle))
 	{
 		console.log(DoesEntityExist(vehicle), "waiting", model, rescue.points.start);
-		await new Promise(res => setTimeout(res, 0));
+		await delay(0);
 	}
 
 	console.log(NetworkGetNetworkIdFromEntity(vehicle));
