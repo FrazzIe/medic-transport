@@ -55,6 +55,19 @@ function onStage(payload, src)
 
 			break;
 		}
+		case RESCUE_STAGE.VEHICLE_CREATE:
+		{
+			// assign vehicle network id
+			rescue.vehicle = payload.netId;
+
+			// set failed status on invalid vehicle id
+			if (rescue.vehicle == null || rescue.vehicle == 0)
+			{
+				rescue.status = RESCUE.STATUS.FAILED;
+			}
+
+			break;
+		}
 	}
 
 	// check if a failure has occured
