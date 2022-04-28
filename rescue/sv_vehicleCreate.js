@@ -35,13 +35,16 @@ async function onStageInit(rescue, src)
 	// handle creation failure
 	if (!DoesEntityExist(vehicle))
 	{
+		// TODO
 		return;
 	}
 
-	
+	// get vehicle network id
+	const netId = NetworkGetNetworkIdFromEntity(vehicle);
 
-	console.log(NetworkGetNetworkIdFromEntity(vehicle));
-	console.log(NetworkGetEntityOwner(vehicle));
+	// end stage
+	// send id
+	emit("rescueStage", { netId }, src);
 }
 
 /**
