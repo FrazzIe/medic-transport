@@ -7,47 +7,6 @@
 */
 
 /**
- * Creates a rescue vehicle at specific point with heading
- * @param {[number, number, number, number]} point 
- * @param {string} rescueType 
- * @returns {number} vehicle handle
- */
-async function createRescueVehicle(point, rescueType)
-{
-	// get vehicle model
-	const model = RESCUE_VEHICLE[rescueType];
-
-	// load vehicle model
-	const loaded = await loadModel(model);
-
-	// prevent execution on load failure
-	if (!loaded)
-	{
-		return 0;
-	}
-	
-	// create vehicle
-	const vehicle = CreateVehicle(model, point[0], point[1], point[2], point[3], true, false);
-
-	// rescue type specific vehicle options
-	if (rescueType == RESCUE_TYPES.GROUND)
-	{
-		SetVehicleOnGroundProperly(vehicle);
-	}
-	
-	// set livery
-	SetVehicleLivery(vehicle, 1);
-
-	// enable siren
-	SetVehicleSiren(vehicle, true);
-
-	// unload model from memory
-	SetModelAsNoLongerNeeded(model);
-
-	return vehicle;
-}
-
-/**
  * Creates 2-3 rescue personnel inside vehicle
  * @param {number} vehicle vehicle handle
  * @param {string} rescueType 
@@ -102,14 +61,6 @@ async function createRescuePersonnel(vehicle, rescueType)
 
 function onStageBegin()
 {
-	const vehicle = await createRescueVehicle(startPoint, rescueType);
-
-	// handle vehicle creation failure
-	if (vehicle == 0)
-	{
-		return;
-	}
-
 	const [personnelCreated, personnel] = await createRescuePersonnel(vehicle, rescueType);
 
 	// handle personnel creation failure
