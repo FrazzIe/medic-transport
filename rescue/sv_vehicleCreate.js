@@ -42,6 +42,15 @@ async function onStageInit(rescue, src)
 	// get vehicle network id
 	const netId = NetworkGetNetworkIdFromEntity(vehicle);
 
+	// get vehicle owner
+	const owner = NetworkGetEntityOwner(vehicle);
+
+	// handle vehicle assignment failure
+	if (owner == -1)
+	{
+		// TODO
+		return;
+	}
 	// end stage
 	// send id
 	emit("rescueStage", { netId }, src);
