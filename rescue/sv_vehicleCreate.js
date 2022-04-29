@@ -66,7 +66,7 @@ async function onStageInit(rescue, src)
 function init()
 {
 	// add stage to stage func map
-	RESCUE_FUNCTION[RESCUE_STAGE.VEHICLE_CREATE] = onStageInit;
+	RESCUE_FUNCTION_INIT[RESCUE_STAGE.VEHICLE_CREATE] = onStageInit;
 }
   
 init();

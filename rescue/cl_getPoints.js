@@ -150,7 +150,7 @@ function onStageInit(rescue)
 function init()
 {
 	// add stage to stage func map
-	RESCUE_FUNCTION[RESCUE_STAGE.GET_POINTS] = onStageInit;
+	RESCUE_FUNCTION_INIT[RESCUE_STAGE.GET_POINTS] = onStageInit;
 }
  
 init();

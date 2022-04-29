@@ -15,14 +15,14 @@ function onStage(rescue)
 	const stage = RESCUE_ORDER[rescue.stageIndex];
 
 	// does stage func exist?
-	if (RESCUE_FUNCTION[stage] == null)
+	if (RESCUE_FUNCTION_INIT[stage] == null)
 	{
 		// TODO
 		return;
 	}
 
 	// call stage init
-	RESCUE_FUNCTION[stage](rescue);
+	RESCUE_FUNCTION_INIT[stage](rescue);
 }
 
 /**

@@ -84,9 +84,12 @@ const RESCUE_ORDER =
 ];
 
 /**
+ * Contains each stage init function
+ * 
  * Map of stage -> function
  * 
  * key: RESCUE_STAGE Enum
+ * 
  * value: function 
  */
-const RESCUE_FUNCTION = {};
+const RESCUE_FUNCTION_INIT = {};

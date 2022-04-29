@@ -221,7 +221,7 @@ async function onStageInit(rescue)
 function init()
 {
 	// add stage to stage func map
-	RESCUE_FUNCTION[RESCUE_STAGE.GET_TYPE] = onStageInit;
+	RESCUE_FUNCTION_INIT[RESCUE_STAGE.GET_TYPE] = onStageInit;
 }
 
 init();

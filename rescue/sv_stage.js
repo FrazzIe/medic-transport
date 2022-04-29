@@ -100,14 +100,14 @@ function onStage(payload, src)
 	}
 
 	// does stage func exist?
-	if (RESCUE_FUNCTION[nextStage] == null)
+	if (RESCUE_FUNCTION_INIT[nextStage] == null)
 	{
 		// TODO
 		return;
 	}
 
 	// call stage init
-	RESCUE_FUNCTION[nextStage](rescue, src);
+	RESCUE_FUNCTION_INIT[nextStage](rescue, src);
 }
 
 /**
