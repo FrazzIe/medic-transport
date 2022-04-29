@@ -5,17 +5,6 @@
 */
 
 /**
- * Contains each stage result function
- * 
- * Map of stage -> function
- * 
- * key: RESCUE_STAGE Enum
- * 
- * value: function 
- */
-const RESCUE_FUNCTION_RESULT = {};
-
-/**
  * Map of rescues
  * 
  * key: server id
