@@ -61,12 +61,30 @@ async function onStageInit(rescue, src)
 }
 
 /**
+ * Handle stage result payload
+ * @param {object} rescue
+ * @param {object} payload
+ */
+function onStageResult(rescue, payload)
+{
+	// set failed status on invalid vehicle id
+	if (payload.netId == null || payload.netId == 0)
+	{
+		rescue.status = RESCUE_STATUS.FAILED;
+	}
+
+	// assign vehicle network id
+	rescue.vehicle = payload.netId;
+}
+
+/**
  * Init event listeners & vars
  */
 function init()
 {
 	// add stage to stage func map
 	RESCUE_FUNCTION_INIT[RESCUE_STAGE.VEHICLE_CREATE] = onStageInit;
+	RESCUE_FUNCTION_RESULT[RESCUE_STAGE.VEHICLE_CREATE] = onStageResult;
 }
   
 init();

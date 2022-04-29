@@ -24,50 +24,10 @@ function onStage(payload, src)
 	// get curr stage
 	const lastStage = RESCUE_ORDER[rescue.stageIndex];
 
-	// TODO: handle stage payloads
-	switch(lastStage)
+	// handle stage result payload
+	if (RESCUE_FUNCTION_RESULT[lastStage] != null)
 	{
-		case RESCUE_STAGE.GET_TYPE:
-		{
-			// assign rescue type
-			rescue.type = payload.rescueType;
-
-			// set failed status if invalid rescue type
-			if (rescue.type == null || rescue.type == RESCUE_TYPE.NONE)
-			{
-				rescue.status = RESCUE_STATUS.FAILED;
-			}
-
-			break;
-		}
-		case RESCUE_STAGE.GET_POINTS:
-		{
-			// store points
-			rescue.points.start = payload.startPoint;
-			rescue.points.end = payload.endPoint;
-			rescue.points.delivery = payload.deliveryPoint;
-			
-			// set failed status if invalid points
-			if (rescue.points.start == null || rescue.points.end == null || rescue.points.delivery == null)
-			{
-				rescue.status = RESCUE_STATUS.FAILED;
-			}
-
-			break;
-		}
-		case RESCUE_STAGE.VEHICLE_CREATE:
-		{
-			// assign vehicle network id
-			rescue.vehicle = payload.netId;
-
-			// set failed status on invalid vehicle id
-			if (rescue.vehicle == null || rescue.vehicle == 0)
-			{
-				rescue.status = RESCUE.STATUS.FAILED;
-			}
-
-			break;
-		}
+		RESCUE_FUNCTION_RESULT[lastStage](rescue, payload);
 	}
 
 	// check if a failure has occured
