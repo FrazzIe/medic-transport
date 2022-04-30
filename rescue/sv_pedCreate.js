@@ -50,6 +50,8 @@ function createPedInVehicle(model, vehicle, seat)
  */
 async function onStageInit(rescue, src)
 {
+	// get vehicle entity
+	const vehicle = NetworkGetEntityFromNetworkId(rescue.vehicle);
 
 }
 
