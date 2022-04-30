@@ -39,6 +39,10 @@ async function onStageInit(rescue, src)
 		return;
 	}
 
+	// increase vehicle culling distance
+	// TODO: relook at this
+	SetEntityDistanceCullingRadius(vehicle, RESCUE_SPAWN_DIST * 10);
+
 	// get vehicle network id
 	const netId = NetworkGetNetworkIdFromEntity(vehicle);
 
