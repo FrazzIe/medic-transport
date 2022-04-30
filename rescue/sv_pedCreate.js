@@ -7,6 +7,43 @@
 */
 
 /**
+ * Number of miliseconds to wait before giving up on ped creation
+ */
+const CREATE_PED_TIMEOUT = 15000;
+
+/**
+ * Create a ped inside a vehicle
+ * @param {string | number} model 
+ * @param {number} vehicle 
+ * @param {number} seat 
+ * @returns {Promise}
+ */
+function createPedInVehicle(model, vehicle, seat)
+{
+	return new Promise(async (resolve, reject) => 
+	{
+		const ped = CreatePedInsideVehicle(vehicle, 4, model, seat, true, false);
+
+		const timeout = GetGameTimer() + CREATE_PED_TIMEOUT;
+	
+		// wait for ped to be created
+		while (!DoesEntityExist(ped) && GetGameTimer() < timeout)
+		{
+			await delay(0);
+		}
+	
+		// handle creation failure
+		if (!DoesEntityExist(ped))
+		{
+			reject(0);
+		}
+	
+		// return ped network id
+		resolve(NetworkGetNetworkIdFromEntity(ped));
+	});
+}
+
+/**
  * Initiate stage
  * @param {object} rescue
  * @param {number | string} src   
