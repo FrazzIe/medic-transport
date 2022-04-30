@@ -31,7 +31,11 @@ const RESCUE_VEHICLE_STYLE =
  */
 const RESCUE_VEHICLE_STOP_RANGE = 5.0;
 
-function onStageBegin()
+/**
+ * Initiate stage
+ * @returns {void}
+ */
+function onStageInit(rescue)
 {
 	// get vehicle driver
 	const driver = personnel[0];
@@ -45,3 +49,14 @@ function onStageBegin()
 	// drive vehicle to point
 	TaskVehicleDriveToCoord(driver, vehicle, endPoint[0], endPoint[1], endPoint[2], speed, 0, model, style, RESCUE_VEHICLE_STOP_RANGE, 0.0);
 }
+
+/**
+ * Init event listeners & vars
+ */
+function init()
+{
+	// add stage to stage func map
+	RESCUE_FUNCTION_INIT[RESCUE_STAGE.VEHICLE_GOTO_POINT] = onStageInit;
+}
+ 
+ init();
