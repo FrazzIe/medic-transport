@@ -52,7 +52,20 @@ async function onStageInit(rescue, src)
 {
 	// get vehicle entity
 	const vehicle = NetworkGetEntityFromNetworkId(rescue.vehicle);
+	// ped creation promises
+	const peds = [];
 
+	// create driver / pilot
+	peds[peds.length] = createPedInVehicle(RESCUE_DRIVER[rescue.type], vehicle, -1);
+
+	// get passenger info
+	const passengerInfo = RESCUE_PASSENGER[rescue.type];
+
+	// create passengers
+	for (let i = 0; i < passengerInfo.count; i++)
+	{
+		peds[peds.length] = createPedInVehicle(passengerInfo.model, vehicle, passengerInfo.seat + i);
+	}
 }
 
 /**
