@@ -66,6 +66,22 @@ async function onStageInit(rescue, src)
 	{
 		peds[peds.length] = createPedInVehicle(passengerInfo.model, vehicle, passengerInfo.seat + i);
 	}
+
+	// collect all ped network ids	
+	let netIds;
+
+	try
+	{
+		netIds = await Promise.all(peds);
+	}
+	catch
+	{
+		netIds = [];
+	}
+
+	// end stage
+	// send ped ids
+	emit("rescueStage", { netIds }, src);
 }
 
 /**
