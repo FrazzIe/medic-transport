@@ -7,6 +7,13 @@
 */
 
 /**
+ * Height offset above air spawn position
+ * 
+ * Prevents air vehicle falling to the ground and crashing
+ */
+const RESCUE_SPAWN_HEIGHT = 250.0;
+
+/**
  * Height offset above target position needed to rappel down
  */
 const RESCUE_RAPPEL_HEIGHT = 10.0;
@@ -130,9 +137,10 @@ function onStageInit(rescue)
 		endPoint[1] = rescue.points.player[1];
 		endPoint[2] = rescue.points.player[2];
 
-		// ensure points are in the air
+		startPoint[2] += RESCUE_SPAWN_HEIGHT;
+
+		// ensure points are in the air (low)
 		deliveryPoint[2] += RESCUE_RAPPEL_HEIGHT;
-		startPoint[2] += RESCUE_RAPPEL_HEIGHT;
 		endPoint[2] += RESCUE_RAPPEL_HEIGHT;
 
 		// point vehicle towards end point
