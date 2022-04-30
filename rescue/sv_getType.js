@@ -14,8 +14,6 @@ function onStageResult(rescue, payload)
 
 	// assign rescue type
 	rescue.type = payload.rescueType;
-
-	console.log("store type");
 }
 
 /**
