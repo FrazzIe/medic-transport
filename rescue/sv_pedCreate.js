@@ -85,12 +85,42 @@ async function onStageInit(rescue, src)
 }
 
 /**
+ * Handle stage result payload
+ * @param {object} rescue
+ * @param {object} payload
+ */
+function onStageResult(rescue, payload)
+{
+	// set failed status on invalid id collection
+	if (payload.netIds == null || payload.netIds.length == 0)
+	{
+		rescue.status = RESCUE_STATUS.FAILED;
+		return;
+	}
+
+	// ensure all network ids are valid
+	for (let i = 0; i < payload.netIds.length; i++)
+	{
+		// is network id invalid?
+		if (payload.netIds[i] == 0)
+		{
+			rescue.status = RESCUE_STATUS.FAILED;
+			return;
+		}
+	}
+
+	// assign ped network ids
+	rescue.peds = payload.netIds;
+}
+
+/**
  * Init event listeners & vars
  */
 function init()
 {
 	// add stage to stage func map
 	RESCUE_FUNCTION_INIT[RESCUE_STAGE.PED_CREATE] = onStageInit;
+	RESCUE_FUNCTION_RESULT[RESCUE_STAGE.PED_CREATE] = onStageResult;
 }
 
 init();
