@@ -75,6 +75,7 @@ function onStageResult(rescue, payload)
 	if (payload.netId == null || payload.netId == 0)
 	{
 		rescue.status = RESCUE_STATUS.FAILED;
+		return;
 	}
 
 	// assign vehicle network id
