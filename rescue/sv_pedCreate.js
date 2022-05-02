@@ -77,29 +77,29 @@ async function onStageInit(rescue, src)
 	try
 	{
 		netIds = await Promise.all(peds);
+
+		// should pilot be customised?
+		if (rescue.type == RESCUE_TYPE.AIR)
+		{
+			// get pilot
+			const pilot = NetworkGetEntityFromNetworkId(netIds[0]);
+			// get ped owner
+			const owner = NetworkGetEntityOwner(pilot);
+
+			// handle ped assignment failure
+			if (owner == -1)
+			{
+				// TODO
+				return;
+			}
+
+			// customise pilot
+			emitNet("rescueCustomisePilot", owner, rescue, netIds[0]);
+		}
 	}
 	catch
 	{
 		netIds = [];
-	}
-
-	// should customise pilot?
-	if (netIds.length != 0 && rescue.type == RESCUE_TYPE.AIR)
-	{
-		// get pilot
-		const pilot = netIds[0];
-		// get ped owner
-		const owner = NetworkGetEntityOwner(pilot);
-
-		// handle ped assignment failure
-		if (owner == -1)
-		{
-			// TODO
-			return;
-		}
-
-		// customise pilot
-		emitNet("rescueCustomisePilot", owner, rescue, pilot);
 	}
 
 	// end stage
