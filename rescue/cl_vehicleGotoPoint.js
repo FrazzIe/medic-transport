@@ -37,8 +37,16 @@ const RESCUE_VEHICLE_STOP_RANGE = 5.0;
  */
 function onStageInit(rescue)
 {
-	// get vehicle driver
-	const driver = personnel[0];
+	// get driver
+	const ped = NetworkGetEntityFromNetworkId(rescue.peds[0]);
+
+	// handle ped failure
+	if (!DoesEntityExist(ped))
+	{
+		// TODO
+		return;
+	}
+
 	// get vehicle travelling speed
 	const speed = RESCUE_VEHICLE_SPEED[rescueType] / MPH_OFFSET;
 	// get vehicle model
