@@ -11,52 +11,45 @@
 const ENTITY_EXIST_TIMEOUT = 60;
 
 /**
- * Performs safety checks to ensure the rescue peds are viable
- * @param {number[]} peds collection of ped net ids
+ * Performs safety checks to ensure the rescue entity is viable
+ * @param {number} netId entity network id
  */
-function pedSafetyCheck(peds)
+function entitySafetyCheck(netId)
 {
 	return new Promise(async (resolve, reject) => 
 	{
-		const timeouts = {};
+		let timeout = 0;
 
 		while (true)
 		{
-			for (let i = 0; i < peds; i++)
+			const ent = NetworkGetEntityFromNetworkId(netId);
+
+			// entity exist?
+			if (!DoesEntityExist(ent))
 			{
-				const netId = peds[i];
-				const ped = NetworkGetEntityFromNetworkId(netId);
+				// inc timeout
+				timeout++;
 
-				// entity exist?
-				if (!DoesEntityExist(ped))
-				{
-					// start exist timeout
-					if (!timeouts[netId])
-					{
-						timeouts[netId] = 0;
-					}
-
-					// inc timeout
-					timeouts[netId]++;
-
-					// has entity reached timeout threshold
-					if (timeouts[netId] >= ENTITY_EXIST_TIMEOUT)
-					{
-						reject();
-					}
-
-					// skip further checks
-					continue;
-				}
-
-				// is ped dead
-				if (IsEntityDead(ped))
+				// has entity reached timeout threshold
+				if (timeout >= ENTITY_EXIST_TIMEOUT)
 				{
 					reject();
 				}
 
-				await delay(1000);
+				// skip further checks
+				continue;
 			}
+
+			// reset timeout
+			timeout = 0;
+
+			// is ped dead
+			if (IsEntityDead(ent))
+			{
+				reject();
+			}
+
+			await delay(1000);
 		}
 	});
 }
