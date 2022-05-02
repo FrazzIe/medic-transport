@@ -48,6 +48,13 @@ function pedSafetyCheck(peds)
 					// skip further checks
 					continue;
 				}
+
+				// is ped dead
+				if (IsEntityDead(ped))
+				{
+					reject();
+				}
+
 			}
 		}
 	});
