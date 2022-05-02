@@ -9,10 +9,7 @@
  * Performs safety checks to ensure the rescue peds are viable
  * @param {number[]} peds collection of ped net ids
  */
- function pedSafetyCheck(peds)
- {
-	return new Promise(async (resolve, reject) => 
-	{
+function pedSafetyCheck(peds)
+{
 
-	});
- }
+}
