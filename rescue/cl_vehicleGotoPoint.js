@@ -58,14 +58,14 @@ function onStageInit(rescue)
 	}
 
 	// get vehicle travelling speed
-	const speed = RESCUE_VEHICLE_SPEED[rescueType] / MPH_OFFSET;
+	const speed = RESCUE_VEHICLE_SPEED[rescue.type] / MPH_OFFSET;
 	// get vehicle model
-	const model = RESCUE_VEHICLE[rescueType];
+	const model = RESCUE_VEHICLE[rescue.type];
 	// get driving style
-	const style = RESCUE_VEHICLE_STYLE[rescueType];
+	const style = RESCUE_VEHICLE_STYLE[rescue.type];
 
 	// drive vehicle to point
-	TaskVehicleDriveToCoord(driver, vehicle, endPoint[0], endPoint[1], endPoint[2], speed, 0, model, style, RESCUE_VEHICLE_STOP_RANGE, 0.0);
+	TaskVehicleDriveToCoord(ped, vehicle, rescue.points.end[0], rescue.points.end[1], rescue.points.end[2], speed, 0, model, style, RESCUE_VEHICLE_STOP_RANGE, 0.0);
 }
 
 /**
