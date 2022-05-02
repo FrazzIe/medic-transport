@@ -55,6 +55,7 @@ function pedSafetyCheck(peds)
 					reject();
 				}
 
+				await delay(1000);
 			}
 		}
 	});
