@@ -77,4 +77,4 @@ function init()
 	RESCUE_FUNCTION_INIT[RESCUE_STAGE.VEHICLE_GOTO_POINT] = onStageInit;
 }
  
- init();
+init();
