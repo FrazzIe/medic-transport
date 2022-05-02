@@ -47,6 +47,16 @@ function onStageInit(rescue)
 		return;
 	}
 
+	// get vehicle
+	const vehicle = NetworkGetEntityFromNetworkId(rescue.vehicle);
+
+	// handle vehicle failure
+	if (!DoesEntityExist(vehicle))
+	{
+		// TODO
+		return;
+	}
+
 	// get vehicle travelling speed
 	const speed = RESCUE_VEHICLE_SPEED[rescueType] / MPH_OFFSET;
 	// get vehicle model
