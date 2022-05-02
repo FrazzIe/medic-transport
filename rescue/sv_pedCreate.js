@@ -37,7 +37,11 @@ function createPedInVehicle(model, vehicle, seat)
 		{
 			reject(0);
 		}
-	
+
+		// increase ped culling distance
+		// TODO: relook at this
+		SetEntityDistanceCullingRadius(ped, RESCUE_SPAWN_DIST * 10);
+
 		// return ped network id
 		resolve(NetworkGetNetworkIdFromEntity(ped));
 	});
