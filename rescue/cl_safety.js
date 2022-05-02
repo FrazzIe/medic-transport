@@ -11,5 +11,15 @@
  */
 function pedSafetyCheck(peds)
 {
-
+	return new Promise(async (resolve, reject) => 
+	{
+		while (true)
+		{
+			for (let i = 0; i < peds; i++)
+			{
+				const netId = peds[i];
+				const ped = NetworkGetEntityFromNetworkId(netId);
+			}
+		}
+	});
 }
