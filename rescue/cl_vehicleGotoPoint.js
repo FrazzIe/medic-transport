@@ -32,6 +32,20 @@ const RESCUE_VEHICLE_STYLE =
 const RESCUE_VEHICLE_STOP_RANGE = 5.0;
 
 /**
+ * Track a vehicle's position and ensure it reaches a destination
+ * @param {number} ped ped driver handle
+ * @param {number} vehicle vehicle handle
+ * @param {[number, number, number]} destination vehicle destination
+ * @param {number} speed vehicle cruise speed
+ * @param {number} model vehicle model
+ * @param {number} style ped vehicle driving style
+ */
+async function trackVehicle(ped, vehicle, destination, speed, model, style)
+{
+
+}
+
+/**
  * Initiate stage
  * @returns {void}
  */
