@@ -18,33 +18,30 @@ const CREATE_PED_TIMEOUT = 15000;
  * @param {number} seat 
  * @returns {Promise}
  */
-function createPedInVehicle(model, vehicle, seat)
+async function createPedInVehicle(model, vehicle, seat)
 {
-	return new Promise(async (resolve, reject) => 
+	const ped = CreatePedInsideVehicle(vehicle, 4, model, seat, true, false);
+
+	const timeout = GetGameTimer() + CREATE_PED_TIMEOUT;
+
+	// wait for ped to be created
+	while (!DoesEntityExist(ped) && GetGameTimer() < timeout)
 	{
-		const ped = CreatePedInsideVehicle(vehicle, 4, model, seat, true, false);
+		await delay(0);
+	}
 
-		const timeout = GetGameTimer() + CREATE_PED_TIMEOUT;
-	
-		// wait for ped to be created
-		while (!DoesEntityExist(ped) && GetGameTimer() < timeout)
-		{
-			await delay(0);
-		}
-	
-		// handle creation failure
-		if (!DoesEntityExist(ped))
-		{
-			reject(0);
-		}
+	// handle creation failure
+	if (!DoesEntityExist(ped))
+	{
+		throw new Error(`Ped creation failure for handle: ${ped}, entity does not exist`);
+	}
 
-		// increase ped culling distance
-		// TODO: relook at this
-		SetEntityDistanceCullingRadius(ped, RESCUE_SPAWN_DIST * 10);
+	// increase ped culling distance
+	// TODO: relook at this
+	SetEntityDistanceCullingRadius(ped, RESCUE_SPAWN_DIST * 10);
 
-		// return ped network id
-		resolve(NetworkGetNetworkIdFromEntity(ped));
-	});
+	// return ped network id
+	return NetworkGetNetworkIdFromEntity(ped);
 }
 
 /**
