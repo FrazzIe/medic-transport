@@ -14,42 +14,39 @@ const ENTITY_EXIST_TIMEOUT = 60;
  * Performs safety checks to ensure the rescue entity is viable
  * @param {number} netId entity network id
  */
-function entitySafetyCheck(netId)
+async function entitySafetyCheck(netId)
 {
-	return new Promise(async (resolve, reject) => 
+	let timeout = 0;
+
+	while (true)
 	{
-		let timeout = 0;
+		const ent = NetworkGetEntityFromNetworkId(netId);
 
-		while (true)
+		// entity exist?
+		if (!DoesEntityExist(ent))
 		{
-			const ent = NetworkGetEntityFromNetworkId(netId);
+			// inc timeout
+			timeout++;
 
-			// entity exist?
-			if (!DoesEntityExist(ent))
+			// has entity reached timeout threshold
+			if (timeout >= ENTITY_EXIST_TIMEOUT)
 			{
-				// inc timeout
-				timeout++;
-
-				// has entity reached timeout threshold
-				if (timeout >= ENTITY_EXIST_TIMEOUT)
-				{
-					reject();
-				}
-
-				// skip further checks
-				continue;
+				throw new Error(`Entity exist timeout reached for network id: ${netId}`);
 			}
 
-			// reset timeout
-			timeout = 0;
-
-			// is ped dead
-			if (IsEntityDead(ent))
-			{
-				reject();
-			}
-
-			await delay(1000);
+			// skip further checks
+			continue;
 		}
-	});
+
+		// reset timeout
+		timeout = 0;
+
+		// is entity dead
+		if (IsEntityDead(ent))
+		{
+			throw new Error(`Entity with network id ${netId} has died`);
+		}
+
+		await delay(1000);
+	}
 }
