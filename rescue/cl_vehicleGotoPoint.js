@@ -32,6 +32,11 @@ const RESCUE_VEHICLE_STYLE =
 const RESCUE_VEHICLE_STOP_RANGE = 5.0;
 
 /**
+ * Number of retry attempts to ensure vehicle reaches a destination
+ */
+const RESCUE_VEHICLE_GOTO_ATTEMPT = 3;
+
+/**
  * Track a vehicle's position and ensure it reaches a destination
  * @param {number} ped ped driver handle
  * @param {number} vehicle vehicle handle
@@ -42,7 +47,14 @@ const RESCUE_VEHICLE_STOP_RANGE = 5.0;
  */
 async function trackVehicle(ped, vehicle, destination, speed, model, style)
 {
+	let attempts = RESCUE_VEHICLE_GOTO_ATTEMPT;
 
+	while(attempts > 0)
+	{
+		// TODO
+	}
+
+	return new Error(`Failed to reach vehicle destination after retrying ${RESCUE_VEHICLE_GOTO_ATTEMPT} times`);
 }
 
 /**
