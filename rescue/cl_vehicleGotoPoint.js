@@ -74,6 +74,15 @@ function onStageInit(rescue)
 	// array of promises
 	// used in a race
 	const promises = [];
+
+	// entity safety checks
+	promises[promises.length] = entitySafetyCheck(rescue.vehicle);
+
+	for (let i = 0; i < rescue.peds.length; i++)
+	{
+		promises[promises.length] = entitySafetyCheck(rescue.peds[i]);
+	}
+	
 	// drive vehicle to point
 	TaskVehicleDriveToCoord(ped, vehicle, rescue.points.end[0], rescue.points.end[1], rescue.points.end[2], speed, 0, model, style, RESCUE_VEHICLE_STOP_RANGE, 0.0);
 }
