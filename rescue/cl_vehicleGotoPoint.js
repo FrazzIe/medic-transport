@@ -54,7 +54,7 @@ async function trackVehicle(ped, vehicle, destination, speed, model, style)
 		// TODO
 	}
 
-	return new Error(`Failed to reach vehicle destination after retrying ${RESCUE_VEHICLE_GOTO_ATTEMPT} times`);
+	throw new Error(`Failed to reach vehicle destination after retrying ${RESCUE_VEHICLE_GOTO_ATTEMPT} times`);
 }
 
 /**
