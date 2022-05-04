@@ -133,6 +133,9 @@ function onStageInit(rescue)
 		success = false;
 	}
 
+	// end stage
+	// give server result
+	emitNet("rescueStage", { success });
 }
 
 /**
