@@ -117,8 +117,9 @@ function onStageInit(rescue)
 		promises[promises.length] = entitySafetyCheck(rescue.peds[i]);
 	}
 	
-	// drive vehicle to point
-	TaskVehicleDriveToCoord(ped, vehicle, rescue.points.end[0], rescue.points.end[1], rescue.points.end[2], speed, 0, model, style, RESCUE_VEHICLE_STOP_RANGE, 0.0);
+	// track vehicle
+	promises[promises.length] = trackVehicle(rescue.peds[0], rescue.vehicle, destination, speed, model, style);
+	
 }
 
 /**
