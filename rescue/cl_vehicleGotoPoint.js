@@ -52,6 +52,7 @@ async function trackVehicle(ped, vehicle, destination, speed, model, style)
 	while(attempts > 0)
 	{
 		// TODO
+
 	}
 
 	throw new Error(`Failed to reach vehicle destination after retrying ${RESCUE_VEHICLE_GOTO_ATTEMPT} times`);
@@ -64,24 +65,9 @@ async function trackVehicle(ped, vehicle, destination, speed, model, style)
 function onStageInit(rescue)
 {
 	// get driver
-	const ped = NetworkGetEntityFromNetworkId(rescue.peds[0]);
-
-	// handle ped failure
-	if (!DoesEntityExist(ped))
-	{
-		// TODO
-		return;
-	}
-
+	const pedNetId = rescue.peds[0];
 	// get vehicle
-	const vehicle = NetworkGetEntityFromNetworkId(rescue.vehicle);
-
-	// handle vehicle failure
-	if (!DoesEntityExist(vehicle))
-	{
-		// TODO
-		return;
-	}
+	const vehicleNetId = rescue.vehicle;
 
 	// get vehicle travelling speed
 	const speed = RESCUE_VEHICLE_SPEED[rescue.type] / MPH_OFFSET;
