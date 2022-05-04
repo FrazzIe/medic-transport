@@ -71,6 +71,9 @@ function onStageInit(rescue)
 	// get driving style
 	const style = RESCUE_VEHICLE_STYLE[rescue.type];
 
+	// array of promises
+	// used in a race
+	const promises = [];
 	// drive vehicle to point
 	TaskVehicleDriveToCoord(ped, vehicle, rescue.points.end[0], rescue.points.end[1], rescue.points.end[2], speed, 0, model, style, RESCUE_VEHICLE_STOP_RANGE, 0.0);
 }
