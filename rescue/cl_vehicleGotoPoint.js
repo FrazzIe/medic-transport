@@ -64,11 +64,6 @@ async function trackVehicle(ped, vehicle, destination, speed, model, style)
  */
 function onStageInit(rescue)
 {
-	// get driver
-	const pedNetId = rescue.peds[0];
-	// get vehicle
-	const vehicleNetId = rescue.vehicle;
-
 	// get vehicle travelling speed
 	const speed = RESCUE_VEHICLE_SPEED[rescue.type] / MPH_OFFSET;
 	// get vehicle model
