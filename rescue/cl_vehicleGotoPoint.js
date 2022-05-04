@@ -64,6 +64,40 @@ async function trackVehicle(ped, vehicle, destination, speed, model, style)
  */
 function onStageInit(rescue)
 {
+	/*
+		VEHICLE_GOTO_POINT is to be used for going to multiple points
+		same with PED_GOTO_POINT.
+
+		Temporary solution for getting point destination from stage idx
+
+		Possible long term solutions:
+		- Keep a point index, increment after each GOTO_POINT stage (might not work for dyanmic points?)
+		- Separate into more stages e.g. GOTO_START, GOTO_END, GOTO_X
+			- Allows for dyanmic points
+			- Call GOTO_POINT as helper function?
+	*/
+	let destination;
+
+	switch(rescue.stageIdx)
+	{
+		case 4:
+		{
+			destination = rescue.points.end;
+			break;
+		}
+		case 16:
+		{
+			destination = rescue.points.delivery;
+			break;
+		}
+		case 19:
+		default:
+		{
+			destination = rescue.points.start;
+			break;
+		}
+	}
+
 	// get vehicle travelling speed
 	const speed = RESCUE_VEHICLE_SPEED[rescue.type] / MPH_OFFSET;
 	// get vehicle model
