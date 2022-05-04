@@ -37,6 +37,12 @@ const RESCUE_VEHICLE_STOP_RANGE = 5.0;
 const RESCUE_VEHICLE_GOTO_ATTEMPT = 3;
 
 /**
+ * The number of seconds a vehicle must be off course 
+ * or fully stopped before forcing a timeout
+ */
+const RESCUE_VEHICLE_GOTO_TIMEOUT = 60;
+
+/**
  * Track a vehicle's position and ensure it reaches a destination
  * @param {number} ped ped driver network id
  * @param {number} vehicle vehicle network id
@@ -48,6 +54,7 @@ const RESCUE_VEHICLE_GOTO_ATTEMPT = 3;
 async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, style)
 {
 	let attempts = RESCUE_VEHICLE_GOTO_ATTEMPT;
+	let timeout = RESCUE_VEHICLE_GOTO_TIMEOUT;
 
 	while(attempts > 0)
 	{
