@@ -58,7 +58,15 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 
 	while(attempts > 0)
 	{
-		// TODO
+		// get vehicle handle
+		const vehicle = NetworkGetEntityFromNetworkId(vehicleNetId);
+
+		// skip non-existant entity
+		// safety check will catch this
+		if (!DoesEntityExist(vehicle))
+		{
+			continue;
+		}
 
 	}
 
