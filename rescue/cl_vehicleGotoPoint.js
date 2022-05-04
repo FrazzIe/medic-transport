@@ -68,6 +68,19 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 			continue;
 		}
 
+		// get vehicle pos
+		const pos = GetEntityCoords(vehicle);
+
+		// get distance between vehicle & destination
+		const dist = getVector2Distance(pos, destination);
+
+		// in range of destination?
+		if (dist < RESCUE_VEHICLE_STOP_RANGE + (RESCUE_VEHICLE_STOP_RANGE / 2))
+		{
+			return true;
+		}
+
+		await delay(0);
 	}
 
 	throw new Error(`Failed to reach vehicle destination after retrying ${RESCUE_VEHICLE_GOTO_ATTEMPT} times`);
