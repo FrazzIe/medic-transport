@@ -38,14 +38,14 @@ const RESCUE_VEHICLE_GOTO_ATTEMPT = 3;
 
 /**
  * Track a vehicle's position and ensure it reaches a destination
- * @param {number} ped ped driver handle
- * @param {number} vehicle vehicle handle
+ * @param {number} ped ped driver network id
+ * @param {number} vehicle vehicle network id
  * @param {[number, number, number]} destination vehicle destination
  * @param {number} speed vehicle cruise speed
  * @param {number} model vehicle model
  * @param {number} style ped vehicle driving style
  */
-async function trackVehicle(ped, vehicle, destination, speed, model, style)
+async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, style)
 {
 	let attempts = RESCUE_VEHICLE_GOTO_ATTEMPT;
 
