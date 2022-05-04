@@ -58,6 +58,23 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 
 	while(attempts > 0)
 	{
+		// has vehicle tracking timed out?
+		// should we retry?
+		if (timeout >= RESCUE_VEHICLE_GOTO_TIMEOUT)
+		{
+			timeout = 0;
+			attempts--;
+
+			// are we out of retry attempts?
+			if (attempts <= 0)
+			{
+				break;
+			}
+			
+			// TODO: make vehicle drive to point
+			// get ped & vehicle handles
+		}
+
 		// get vehicle handle
 		const vehicle = NetworkGetEntityFromNetworkId(vehicleNetId);
 
