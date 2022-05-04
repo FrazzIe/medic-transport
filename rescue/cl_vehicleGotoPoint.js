@@ -61,7 +61,22 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 		// has vehicle tracking timed out?
 		// should we retry?
 		if (timeout >= RESCUE_VEHICLE_GOTO_TIMEOUT)
-		{
+		{						
+			// get ped & vehicle handles
+			const ped = NetworkGetEntityFromNetworkId(pedNetId);
+			const vehicle = NetworkGetEntityFromNetworkId(vehicleNetId);
+
+			// skip non-existant entities
+			// safety check will catch this
+			if (!DoesEntityExist(ped) || !DoesEntityExist(vehicle))
+			{
+				continue;
+			}
+
+			// drive vehicle to point
+			TaskVehicleDriveToCoord(ped, vehicle, destination[0], destination[1], destination[2], speed, 0, model, style, RESCUE_VEHICLE_STOP_RANGE, 0.0);
+
+			// reset timeout, remove attempt
 			timeout = 0;
 			attempts--;
 
@@ -70,9 +85,6 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 			{
 				break;
 			}
-			
-			// TODO: make vehicle drive to point
-			// get ped & vehicle handles
 		}
 
 		// get vehicle handle
