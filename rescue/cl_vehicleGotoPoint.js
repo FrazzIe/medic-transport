@@ -120,6 +120,19 @@ function onStageInit(rescue)
 	// track vehicle
 	promises[promises.length] = trackVehicle(rescue.peds[0], rescue.vehicle, destination, speed, model, style);
 	
+	// race the promises
+	let success = true;
+
+	try
+	{
+		await Promise.race(promises);
+	}
+	catch(err)
+	{
+		console.info(err.message);
+		success = false;
+	}
+
 }
 
 /**
