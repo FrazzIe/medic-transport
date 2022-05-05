@@ -135,7 +135,7 @@ async function onStageInit(rescue)
 	*/
 	let destination;
 
-	switch(rescue.stageIdx)
+	switch(rescue.stageIndex)
 	{
 		case 4:
 		{
