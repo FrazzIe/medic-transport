@@ -109,7 +109,7 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 			return true;
 		}
 
-		await delay(0);
+		await delay(1000);
 	}
 
 	throw new Error(`Failed to reach vehicle destination after retrying ${RESCUE_VEHICLE_GOTO_ATTEMPT} times`);
