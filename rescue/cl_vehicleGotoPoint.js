@@ -50,14 +50,21 @@ const RESCUE_VEHICLE_GOTO_TIMEOUT = 60;
  * @param {number} speed vehicle cruise speed
  * @param {number} model vehicle model
  * @param {number} style ped vehicle driving style
+ * @param {object} info
+ * @param {boolean} info.cancel should promise be cancelled
  */
-async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, style)
+async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, style, info)
 {
 	let attempts = RESCUE_VEHICLE_GOTO_ATTEMPT;
 	let timeout = RESCUE_VEHICLE_GOTO_TIMEOUT;
 
 	while(attempts > 0)
 	{
+		if (info.cancel)
+		{
+			return;
+		}
+
 		// has vehicle tracking timed out?
 		// should we retry?
 		if (timeout >= RESCUE_VEHICLE_GOTO_TIMEOUT)
@@ -169,20 +176,24 @@ async function onStageInit(rescue)
 	// get driving style
 	const style = RESCUE_VEHICLE_STYLE[rescue.type];
 
+	// promise info
+	// used to cancel remaining promises
+	const info = { cancel: false };
+
 	// array of promises
 	// used in a race
 	const promises = [];
 
 	// entity safety checks
-	promises[promises.length] = entitySafetyCheck(rescue.vehicle);
+	promises[promises.length] = entitySafetyCheck(rescue.vehicle, info);
 
 	for (let i = 0; i < rescue.peds.length; i++)
 	{
-		promises[promises.length] = entitySafetyCheck(rescue.peds[i]);
+		promises[promises.length] = entitySafetyCheck(rescue.peds[i], info);
 	}
 	
 	// track vehicle
-	promises[promises.length] = trackVehicle(rescue.peds[0], rescue.vehicle, destination, speed, model, style);
+	promises[promises.length] = trackVehicle(rescue.peds[0], rescue.vehicle, destination, speed, model, style, info);
 	
 	// race the promises
 	let success = true;
@@ -197,6 +208,9 @@ async function onStageInit(rescue)
 		console.info(err.message);
 		success = false;
 	}
+
+	// stop all running promises
+	info.cancel = true;
 
 	// end stage
 	// give server result
