@@ -13,13 +13,22 @@ const ENTITY_EXIST_TIMEOUT = 60;
 /**
  * Performs safety checks to ensure the rescue entity is viable
  * @param {number} netId entity network id
+ * @param {object} info
+ * @param {boolean} info.cancel should promise be cancelled
  */
-async function entitySafetyCheck(netId)
+async function entitySafetyCheck(netId, info)
 {
 	let timeout = 0;
 
 	while (true)
 	{
+		console.info(`Safety check for ${netId}, ${info.cancel}`);
+
+		if (info.cancel)
+		{
+			return;
+		}
+
 		const ent = NetworkGetEntityFromNetworkId(netId);
 
 		// entity exist?

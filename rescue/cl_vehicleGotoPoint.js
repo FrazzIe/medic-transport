@@ -119,7 +119,7 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
  * Initiate stage
  * @returns {void}
  */
-function onStageInit(rescue)
+async function onStageInit(rescue)
 {
 	/*
 		VEHICLE_GOTO_POINT is to be used for going to multiple points
