@@ -57,6 +57,7 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 {
 	let attempts = RESCUE_VEHICLE_GOTO_ATTEMPT;
 	let timeout = RESCUE_VEHICLE_GOTO_TIMEOUT;
+	let lastDist;
 
 	while(attempts > 0)
 	{
@@ -115,13 +116,30 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 		// get distance between vehicle & destination
 		const dist = getVector2Distance(pos, destination);
 
-		console.info(`dist: ${dist}, stop range: ${ RESCUE_VEHICLE_STOP_RANGE + (RESCUE_VEHICLE_STOP_RANGE / 2)}`);
+		console.info(`dist: ${dist}, stop range: ${RESCUE_VEHICLE_STOP_RANGE + (RESCUE_VEHICLE_STOP_RANGE / 2)}, timeout: ${timeout}`);
 
 		// in range of destination?
 		if (dist < RESCUE_VEHICLE_STOP_RANGE + (RESCUE_VEHICLE_STOP_RANGE / 2))
 		{
 			return true;
 		}
+
+		if (lastDist != null)
+		{
+			// is vehicle further away?
+			// or sitting still
+			if (dist >= lastDist - RESCUE_VEHICLE_STOP_RANGE)
+			{
+				timeout++;
+			}
+			else if (timeout != 0)
+			{
+				timeout = 0;
+			}
+		}
+
+		// store distance
+		lastDist = dist;
 
 		await delay(1000);
 	}
