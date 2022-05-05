@@ -73,6 +73,9 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 				continue;
 			}
 
+			console.info("Drive to point");
+			console.info(`attempts: ${attempts}, timeout: ${timeout}`);
+
 			// drive vehicle to point
 			TaskVehicleDriveToCoord(ped, vehicle, destination[0], destination[1], destination[2], speed, 0, model, style, RESCUE_VEHICLE_STOP_RANGE, 0.0);
 
@@ -80,9 +83,11 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 			timeout = 0;
 			attempts--;
 
+
 			// are we out of retry attempts?
 			if (attempts <= 0)
 			{
+				console.info("out of retry attempts");
 				break;
 			}
 		}
@@ -102,6 +107,8 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 
 		// get distance between vehicle & destination
 		const dist = getVector2Distance(pos, destination);
+
+		console.info(`dist: ${dist}, stop range: ${ RESCUE_VEHICLE_STOP_RANGE + (RESCUE_VEHICLE_STOP_RANGE / 2)}`);
 
 		// in range of destination?
 		if (dist < RESCUE_VEHICLE_STOP_RANGE + (RESCUE_VEHICLE_STOP_RANGE / 2))
@@ -182,7 +189,8 @@ async function onStageInit(rescue)
 
 	try
 	{
-		await Promise.race(promises);
+		const p = await Promise.race(promises);
+		console.log(p);
 	}
 	catch(err)
 	{
