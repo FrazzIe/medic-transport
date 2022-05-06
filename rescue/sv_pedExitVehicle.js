@@ -63,6 +63,15 @@ async function onStageInit(rescue, src)
 		// ped exit task
 		tasks[tasks.length] = pedExitVehicle(rescue.peds[i], rescue.vehicle);
 	}
+
+	try
+	{
+		const p = await Promise.race([Promise.all(tasks), ...checks]);
+	}
+	catch(err)
+	{
+		console.info(err.message);
+	}
 }
 
 /**
