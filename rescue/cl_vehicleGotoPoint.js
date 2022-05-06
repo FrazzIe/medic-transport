@@ -55,7 +55,7 @@ const RESCUE_VEHICLE_GOTO_TIMEOUT = 60;
  */
 async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, style, info)
 {
-	let attempts = RESCUE_VEHICLE_GOTO_ATTEMPT;
+	let attempts = RESCUE_VEHICLE_GOTO_ATTEMPT + 1;
 	let timeout = RESCUE_VEHICLE_GOTO_TIMEOUT;
 	let lastDist;
 
