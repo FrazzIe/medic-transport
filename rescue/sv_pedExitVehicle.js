@@ -40,7 +40,12 @@ async function pedExitVehicle(pedNetId, vehicleNetId)
  */
 async function onStageInit(rescue, src)
 {
-	// TODO
+	// ped tasks collection
+	const tasks = [];
+
+	// safety check collection
+	const checks = [];
+
 }
 
 /**
