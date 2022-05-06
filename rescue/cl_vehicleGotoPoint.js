@@ -43,6 +43,12 @@ const RESCUE_VEHICLE_GOTO_ATTEMPT = 3;
 const RESCUE_VEHICLE_GOTO_TIMEOUT = 60;
 
 /**
+ * Distance threshold used during a complete failure to check
+ * if it's possible to reach point on foot
+ */
+const RESCUE_VEHICLE_GOTO_WALKING_THRESHOLD = 50.0;
+
+/**
  * Track a vehicle's position and ensure it reaches a destination
  * @param {number} ped ped driver network id
  * @param {number} vehicle vehicle network id
@@ -142,6 +148,28 @@ async function trackVehicle(pedNetId, vehicleNetId, destination, speed, model, s
 		lastDist = dist;
 
 		await delay(1000);
+	}
+
+	// handle complete failure
+
+	// get vehicle handle
+	const vehicle = NetworkGetEntityFromNetworkId(vehicleNetId);
+
+	// ensure vehicle exists
+	if (DoesEntityExist(vehicle))
+	{
+		// get vehicle pos
+		const pos = GetEntityCoords(vehicle);
+
+		// get distance between vehicle & destination
+		const dist = getVector2Distance(pos, destination);
+
+		// are we in walking distance?
+		// can the rescue be recovered on foot?
+		if (dist < RESCUE_VEHICLE_GOTO_WALKING_THRESHOLD)
+		{
+			return true;
+		}
 	}
 
 	throw new Error(`Failed to reach vehicle destination after retrying ${RESCUE_VEHICLE_GOTO_ATTEMPT} times`);
