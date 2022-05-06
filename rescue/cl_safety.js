@@ -56,6 +56,16 @@ async function entitySafetyCheck(netId, info)
 			throw new Error(`Entity with network id ${netId} has died`);
 		}
 
+		// vehicle specific checks
+		if (IsEntityAVehicle(ent))
+		{
+			// check if vehicle has somehow flipped
+			if (IsVehicleStuckOnRoof(ent))
+			{
+				throw new Error(`Entity with network id ${netId} has flipped`);
+			}
+		}
+
 		await delay(1000);
 	}
 }
