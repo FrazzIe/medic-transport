@@ -50,6 +50,16 @@ async function onStageInit(rescue, src)
 	// used to cancel remaining promises
 	const info = { cancel: false };
 
+	// create promises
+
+	// vehicle safety check
+	checks[checks.length] = entitySafetyCheck(rescue.vehicle, info);
+
+	for (let i = 0; i < rescue.peds.length; i++)
+	{
+		// ped safety check
+		checks[checks.length] = entitySafetyCheck(rescue.peds[i], info);
+	}
 }
 
 /**
