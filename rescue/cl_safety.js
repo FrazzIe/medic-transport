@@ -66,6 +66,16 @@ async function entitySafetyCheck(netId, info)
 			}
 		}
 
+		// ped specific checks
+		if (IsEntityAPed(ent))
+		{
+			// ensure ped is in a vehicle
+			if (!IsPedSittingInAnyVehicle(ent))
+			{
+				throw new Error(`Entity with network id ${netId} isn't in a vehicle`);
+			}
+		}
+
 		await delay(1000);
 	}
 }
