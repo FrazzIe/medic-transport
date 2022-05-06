@@ -59,6 +59,9 @@ async function onStageInit(rescue, src)
 	{
 		// ped safety check
 		checks[checks.length] = entitySafetyCheck(rescue.peds[i], info);
+
+		// ped exit task
+		tasks[tasks.length] = pedExitVehicle(rescue.peds[i], rescue.vehicle);
 	}
 }
 
