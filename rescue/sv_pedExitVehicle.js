@@ -46,6 +46,10 @@ async function onStageInit(rescue, src)
 	// safety check collection
 	const checks = [];
 
+	// promise info
+	// used to cancel remaining promises
+	const info = { cancel: false };
+
 }
 
 /**
