@@ -27,6 +27,13 @@ async function pedExitVehicle(pedNetId, vehicleNetId, seatIndex)
 		{
 			continue;
 		}
+		
+		// check if ped is no longer in vehicle
+		if (GetPedInVehicleSeat(vehicle, seatIndex) != ped && GetLastPedInVehicleSeat(vehicle, seatIndex) == ped)
+		{
+			return true;
+		}
+
 
 		// TODO: Exit vehicle
 
