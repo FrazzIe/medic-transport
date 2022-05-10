@@ -8,7 +8,7 @@
 
 /**
  * No script task is assigned to ped
- * 0x811E343 to signed int, used with GetPedScriptTaskCommand
+ * 0x811E343C to signed int, used with GetPedScriptTaskCommand
  */
 const PED_TASK_NONE = -2128726980;
 
