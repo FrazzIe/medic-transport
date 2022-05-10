@@ -13,6 +13,12 @@
 const PED_TASK_NONE = -2128726980;
 
 /**
+ * Unknown task handle, seems to be related with vehicle exiting?
+ * 0xB167044D to signed int, used with GetPedScriptTaskCommand
+ */
+const PED_TASK_UNK = -1318648755;
+
+/**
  * Make ped exit vehicle
  * @param {number} pedNetId ped network id
  * @param {number} vehicleNetId vehicle network id
