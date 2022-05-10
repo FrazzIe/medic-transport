@@ -34,6 +34,9 @@ async function pedExitVehicle(pedNetId, vehicleNetId, seatIndex)
 			return true;
 		}
 
+		// get peds current task
+		const task = GetPedScriptTaskCommand(ped);
+
 
 		// TODO: Exit vehicle
 
