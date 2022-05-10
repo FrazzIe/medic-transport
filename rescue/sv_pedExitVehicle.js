@@ -24,8 +24,8 @@ async function pedExitVehicle(pedNetId, vehicleNetId, seatIndex)
 	while (true)
 	{
 		// get ped & vehicle handles
-		const ped = NetworkGetEntityFromNetworkId(netId);
-		const vehicle = NetworkGetEntityFromNetworkId(netId);
+		const ped = NetworkGetEntityFromNetworkId(pedNetId);
+		const vehicle = NetworkGetEntityFromNetworkId(vehicleNetId);
 
 		// skip non-existant entities
 		// safety check will catch this
