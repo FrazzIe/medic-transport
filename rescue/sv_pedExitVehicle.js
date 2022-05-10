@@ -55,8 +55,11 @@ async function pedExitVehicle(pedNetId, vehicleNetId, seatIndex)
 			// leave vehicle
 			TaskLeaveAnyVehicle(ped, 0, 0);
 		}
-
-		// TODO: Clear tasks if any task is running but the exiting vehicle task
+		// clear tasks if not unk
+		else if (task != PED_TASK_UNK)
+		{
+			ClearPedTasks(ped);
+		}
 
 		console.log(`current task command ${task} -> ${GetPedScriptTaskCommand(ped)}`);
 
