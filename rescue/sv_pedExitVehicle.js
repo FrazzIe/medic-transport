@@ -8,11 +8,12 @@
 
 /**
  * Make ped exit vehicle
- * @param {number} pedNetId 
- * @param {number} vehicleNetId 
+ * @param {number} pedNetId ped network id
+ * @param {number} vehicleNetId vehicle network id
+ * @param {number} seatIndex ped seat index
  * @returns {bool}
  */
-async function pedExitVehicle(pedNetId, vehicleNetId)
+async function pedExitVehicle(pedNetId, vehicleNetId, seatIndex)
 {
 	while (true)
 	{
@@ -61,7 +62,7 @@ async function onStageInit(rescue, src)
 		checks[checks.length] = entitySafetyCheck(rescue.peds[i], info);
 
 		// ped exit task
-		tasks[tasks.length] = pedExitVehicle(rescue.peds[i], rescue.vehicle);
+		tasks[tasks.length] = pedExitVehicle(rescue.peds[i], rescue.vehicle, i - 1);
 	}
 
 	try
