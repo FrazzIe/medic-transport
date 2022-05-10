@@ -7,6 +7,12 @@
 */
 
 /**
+ * No script task is assigned to ped
+ * 0x811E343 to signed int, used with GetPedScriptTaskCommand
+ */
+const PED_TASK_NONE = -2128726980;
+
+/**
  * Make ped exit vehicle
  * @param {number} pedNetId ped network id
  * @param {number} vehicleNetId vehicle network id
